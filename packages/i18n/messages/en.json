@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "imoveis": "Properties",
+    "offCatalog": "Off-Catalog",
+    "sobre": "About",
+    "contato": "Contact"
+  },
+  "hero": {
+    "headline": "The right property isn't found. It's chosen.",
+    "cta_primary": "Speak with an advisor",
+    "cta_secondary": "View properties"
+  },
+  "imoveis": {
+    "title": "Properties",
+    "filters": {
+      "cidade": "City",
+      "tipo": "Type",
+      "preco": "Price range",
+      "todas": "All",
+      "todos": "All"
+    },
+    "card": {
+      "verDetalhes": "View details",
+      "sobConsulta": "Price upon request",
+      "area": "sqm",
+      "quartos": "bedrooms",
+      "vagas": "parking"
+    },
+    "detalhe": {
+      "interesse": "I'm interested — speak with an advisor",
+      "galeria": "Gallery",
+      "localizacao": "Location",
+      "descricao": "Description"
+    }
+  },
+  "offCatalog": {
+    "header": "These properties are shared exclusively with our clients.",
+    "badge": "Exclusive"
+  },
+  "sobre": {
+    "title": "About Bossa & Co.",
+    "servicos": "Services",
+    "mercados": "Our markets"
+  },
+  "contato": {
+    "title": "Contact",
+    "nome": "Name",
+    "email": "Email",
+    "telefone": "Phone",
+    "mensagem": "Message",
+    "enviar": "Send message",
+    "sucesso": "Message sent successfully.",
+    "erro": "Failed to send. Please try again."
+  },
+  "footer": {
+    "direitos": "All rights reserved."
+  }
+}

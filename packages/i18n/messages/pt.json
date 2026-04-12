@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "imoveis": "Imóveis",
+    "offCatalog": "Off-Catalog",
+    "sobre": "Sobre",
+    "contato": "Contato"
+  },
+  "hero": {
+    "headline": "O imóvel certo não se encontra. Se escolhe.",
+    "cta_primary": "Fale com um advisor",
+    "cta_secondary": "Ver imóveis"
+  },
+  "imoveis": {
+    "title": "Imóveis",
+    "filters": {
+      "cidade": "Cidade",
+      "tipo": "Tipo",
+      "preco": "Faixa de preço",
+      "todas": "Todas",
+      "todos": "Todos"
+    },
+    "card": {
+      "verDetalhes": "Ver detalhes",
+      "sobConsulta": "Sob consulta",
+      "area": "m²",
+      "quartos": "quartos",
+      "vagas": "vagas"
+    },
+    "detalhe": {
+      "interesse": "Tenho interesse — fale com um advisor",
+      "galeria": "Galeria",
+      "localizacao": "Localização",
+      "descricao": "Descrição"
+    }
+  },
+  "offCatalog": {
+    "header": "Estes imóveis são compartilhados exclusivamente com nossos clientes.",
+    "badge": "Exclusivo"
+  },
+  "sobre": {
+    "title": "Sobre a Bossa & Co.",
+    "servicos": "Serviços",
+    "mercados": "Nossos mercados"
+  },
+  "contato": {
+    "title": "Contato",
+    "nome": "Nome",
+    "email": "Email",
+    "telefone": "Telefone",
+    "mensagem": "Mensagem",
+    "enviar": "Enviar mensagem",
+    "sucesso": "Mensagem enviada com sucesso.",
+    "erro": "Erro ao enviar. Tente novamente."
+  },
+  "footer": {
+    "direitos": "Todos os direitos reservados."
+  }
+}
