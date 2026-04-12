@@ -3,7 +3,14 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "outputs": [".next/**", "!.next/cache/**", "dist/**"],
+      "env": [
+        "NOTION_TOKEN",
+        "NOTION_DB_BOSSA_CO",
+        "NOTION_DB_BOSSA_CAMPO",
+        "RESEND_API_KEY",
+        "CONTACT_EMAIL"
+      ]
     },
     "dev": {
       "cache": false,
