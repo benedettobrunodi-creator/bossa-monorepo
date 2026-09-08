@@ -80,7 +80,7 @@ export default function SobrePage() {
                 desc: "Imóveis exclusivos que não são divulgados no mercado aberto. Acesso reservado a clientes que exigem discrição e raridade.",
               },
             ].map((s) => (
-              <div key={s.titulo} className="border-t-2 border-brand-blue pt-8">
+              <div key={s.titulo} className="border-t-2 border-brand-latao pt-8">
                 <h3 className="font-serif text-2xl mb-4">{s.titulo}</h3>
                 <p className="text-sm text-brand-gray leading-relaxed">{s.desc}</p>
               </div>

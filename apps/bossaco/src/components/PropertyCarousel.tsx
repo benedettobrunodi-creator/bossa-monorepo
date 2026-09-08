@@ -96,7 +96,7 @@ export function PropertyCarousel({ imoveis }: Props) {
                   )}
                 </div>
                 <p className="section-label mb-1">{imovel.tipo} · {imovel.cidade}{imovel.bairro ? `, ${imovel.bairro}` : ""}</p>
-                <h3 className="font-serif text-xl mb-2 hover:text-brand-blue transition-colors">{imovel.titulo}</h3>
+                <h3 className="font-serif text-xl mb-2 hover:text-brand-latao transition-colors">{imovel.titulo}</h3>
                 <div className="flex gap-4 text-sm text-brand-gray mb-2">
                   {imovel.area && <span>{imovel.area} m²</span>}
                   {imovel.quartos && <span>{imovel.quartos} quartos</span>}
@@ -134,7 +134,7 @@ export function PropertyCarousel({ imoveis }: Props) {
                   )}
                 </div>
                 <p className="section-label mb-1">{imovel.tipo} · {imovel.cidade}{imovel.bairro ? `, ${imovel.bairro}` : ""}</p>
-                <h3 className="font-serif text-xl mb-2 group-hover:text-brand-blue transition-colors">{imovel.titulo}</h3>
+                <h3 className="font-serif text-xl mb-2 group-hover:text-brand-latao transition-colors">{imovel.titulo}</h3>
                 <div className="flex gap-4 text-sm text-brand-gray mb-2">
                   {imovel.area && <span>{imovel.area} m²</span>}
                   {imovel.quartos && <span>{imovel.quartos} quartos</span>}

@@ -43,9 +43,12 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/40">
-            © {new Date().getFullYear()} Bossa Campo. Todos os direitos reservados.
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+          <p className="text-xs text-white/40 text-center md:text-left">
+            © {new Date().getFullYear()} Bossa Campo. Todos os direitos reservados. · CRECI-SP 319862 ·{" "}
+            <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">
+              Política de Privacidade
+            </Link>
           </p>
           <a href="https://instagram.com/bossacampo" target="_blank" rel="noopener noreferrer"
             className="text-xs tracking-widest uppercase hover:text-white transition-colors" style={{ color: "#8FAF99" }}>

@@ -38,7 +38,7 @@ export default async function RootLayout({
   const messages = await getMessages();
   return (
     <html lang={locale} className={`${cormorant.variable} ${inter.variable}`}>
-      <body className="bg-white text-brand-graphite font-sans antialiased">
+      <body className="bg-brand-offwhite text-brand-graphite font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
           {children}
         </NextIntlClientProvider>
