@@ -35,7 +35,7 @@ export function ImoveisFilters({ cidadeAtiva, tipoAtivo, cidades, tipos }: Imove
   return (
     <div className="flex flex-wrap gap-3 mb-2">
       <div className="flex flex-wrap gap-2 items-center">
-        <span className="text-xs text-brand-gray tracking-wide mr-1">Região:</span>
+        <span className="text-xs text-brand-gray tracking-wide mr-1">{t("regiao")}:</span>
         <button
           className={`${btnBase} ${!cidadeAtiva ? active : inactive}`}
           onClick={() => setFilter("cidade", null)}
