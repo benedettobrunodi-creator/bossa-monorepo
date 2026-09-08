@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Instancia só em runtime (em build a env pode não existir e o construtor lança)
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) return null;
+  return new Resend(key);
+}
 
 export async function POST(req: Request) {
   try {
@@ -11,9 +16,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Campos obrigatórios ausentes." }, { status: 400 });
     }
 
+    const resend = getResend();
+    if (!resend) {
+      console.error("RESEND_API_KEY ausente — contato não enviado");
+      return NextResponse.json({ error: "Serviço de e-mail indisponível." }, { status: 503 });
+    }
+
     await resend.emails.send({
       from: "Bossa & Co. Site <noreply@bossaco.com.br>",
-      to: process.env.CONTACT_EMAIL!,
+      to: process.env.CONTACT_EMAIL ?? "bruno@ber-engenharia.com.br",
       reply_to: email,
       subject: imovel
         ? `Interesse em imóvel: ${imovel}`

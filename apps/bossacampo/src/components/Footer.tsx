@@ -34,7 +34,7 @@ export function Footer() {
             <a href="mailto:contato@bossacampo.com.br" className="hover:text-white transition-colors">
               contato@bossacampo.com.br
             </a>
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a href="https://wa.me/5511921226156" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               WhatsApp
             </a>
             <p className="mt-2">Campinas · Itu · Indaiatuba e região</p>
@@ -52,6 +52,9 @@ export function Footer() {
             Instagram
           </a>
         </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12, opacity: 0.7, paddingBottom: 16 }}>
+        CRECI-SP 319862 · <a href="/politica-de-privacidade">Política de Privacidade</a>
       </div>
     </footer>
   );

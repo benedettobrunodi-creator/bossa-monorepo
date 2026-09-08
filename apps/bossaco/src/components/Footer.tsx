@@ -41,7 +41,7 @@ export function Footer() {
               contato@bossaco.com.br
             </a>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5511921226156"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
@@ -70,6 +70,9 @@ export function Footer() {
             </a>
           </div>
         </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12, opacity: 0.7, paddingBottom: 16 }}>
+        CRECI-SP 319862 · <a href="/politica-de-privacidade">Política de Privacidade</a>
       </div>
     </footer>
   );
