@@ -20,7 +20,7 @@ export function PropertyGallery({ fotos, titulo }: { fotos: string[]; titulo: st
           <Image src={fotos[0]} alt={titulo} fill className="object-cover" sizes="50vw" priority />
         </div>
         {fotos.slice(1, 5).map((foto, i) => (
-          <div key={i} className="relative">
+          <div key={i} className="relative" onClick={() => { setIndex(i + 1); setOpen(true); }}>
             <Image src={foto} alt={`${titulo} ${i + 2}`} fill className="object-cover" sizes="25vw" />
             {i === 3 && fotos.length > 5 && (
               <div className="absolute inset-0 bg-brand-graphite/60 flex items-center justify-center">

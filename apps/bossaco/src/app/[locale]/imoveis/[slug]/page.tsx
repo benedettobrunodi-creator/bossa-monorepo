@@ -94,6 +94,14 @@ export default async function ImovelPage({ params }: Props) {
                 {imovel.tipo} · {imovel.cidade}
               </p>
               <InterestModal imovelTitulo={imovel.titulo} imovelSlug={imovel.slug} />
+              <a
+                href={`https://wa.me/5511921226156?text=${encodeURIComponent(`Olá! Tenho interesse no imóvel "${imovel.titulo}" — https://bossaeco.com.br/imoveis/${imovel.slug}`)}`}
+                target="_blank" rel="noreferrer"
+                className="mt-3 flex items-center justify-center gap-2 w-full border border-brand-gray-light py-3 text-xs tracking-widest uppercase text-brand-graphite hover:border-brand-graphite transition-colors"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1a13 13 0 0 1-5.7-5A6.6 6.6 0 0 1 7 9.3c0-.6.3-1.2.6-1.5.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .6l-.4.6c-.2.2-.3.4-.1.7a9.7 9.7 0 0 0 3.6 3.2c.3.1.5.1.7-.1l.8-.9c.2-.2.4-.3.6-.2l2 1c.4.1.6.3.6.4 0 .2 0 .7-.2 1.2Z"/></svg>
+                Falar no WhatsApp
+              </a>
             </div>
           </div>
         </div>
