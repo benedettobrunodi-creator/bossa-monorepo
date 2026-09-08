@@ -45,6 +45,9 @@ export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis
         }
         .anim-carrossel { animation: carrossel linear infinite; }
         .anim-carrossel-rev { animation: carrossel linear infinite reverse; }
+        @media (prefers-reduced-motion: reduce) {
+          .anim-carrossel, .anim-carrossel-rev { animation-play-state: paused; }
+        }
       `}</style>
     </section>
   );
