@@ -56,9 +56,6 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <div style={{ textAlign: "center", fontSize: 12, opacity: 0.7, paddingBottom: 16 }}>
-        CRECI-SP 319862 · <a href="/politica-de-privacidade">Política de Privacidade</a>
-      </div>
     </footer>
   );
 }
