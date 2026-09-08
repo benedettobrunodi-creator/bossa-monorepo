@@ -41,7 +41,7 @@ export default async function ImoveisPage({
               <p className="font-serif text-2xl text-brand-gray">Nenhuma propriedade encontrada.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 mt-12">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10 mt-12">
               {imoveis.map((imovel) => (
                 <PropertyCard
                   key={imovel.id}

@@ -29,7 +29,7 @@ export default async function OffCatalogPage() {
           {imoveis.length === 0 ? (
             <p className="font-serif text-2xl text-brand-gray">Sem imóveis disponíveis no momento.</p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
               {imoveis.map((imovel) => (
                 <PropertyCard
                   key={imovel.id}
