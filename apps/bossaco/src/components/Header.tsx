@@ -20,7 +20,7 @@ export function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-gray-light">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-brand-offwhite/95 backdrop-blur-sm border-b border-brand-gray-light">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="font-serif text-xl tracking-wide text-brand-graphite">
           Bossa & Co.
@@ -57,7 +57,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-white border-t border-brand-gray-light px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-brand-offwhite border-t border-brand-gray-light px-6 py-4 flex flex-col gap-4">
           {links.map((l) => (
             <Link
               key={l.href}

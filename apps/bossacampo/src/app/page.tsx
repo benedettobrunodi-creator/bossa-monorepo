@@ -27,7 +27,7 @@ export default async function HomePage() {
               { titulo: "Campo & Interior", desc: "Especializados em chácaras, sítios, condomínios de campo e casas em cidades históricas. Conhecemos cada região como poucos." },
               { titulo: "Off-Catalog", desc: "Propriedades exclusivas compartilhadas apenas com nossos clientes — sem divulgação no mercado aberto." },
             ].map((s) => (
-              <div key={s.titulo} className="border-t border-brand-sand pt-8">
+              <div key={s.titulo} className="border-t border-brand-terracota pt-8">
                 <h3 className="font-serif text-2xl mb-4">{s.titulo}</h3>
                 <p className="text-sm text-brand-gray leading-relaxed">{s.desc}</p>
               </div>

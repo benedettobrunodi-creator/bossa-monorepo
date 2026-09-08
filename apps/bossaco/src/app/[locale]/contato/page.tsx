@@ -25,7 +25,7 @@ export default function ContatoPage() {
             <div className="flex flex-col gap-6 text-sm">
               <div>
                 <p className="section-label mb-1">Email</p>
-                <a href="mailto:contato@bossaco.com.br" className="text-brand-graphite hover:text-brand-blue transition-colors">
+                <a href="mailto:contato@bossaco.com.br" className="text-brand-graphite hover:text-brand-latao transition-colors">
                   contato@bossaco.com.br
                 </a>
               </div>
@@ -35,7 +35,7 @@ export default function ContatoPage() {
                   href="https://wa.me/5511999999999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-graphite hover:text-brand-blue transition-colors"
+                  className="text-brand-graphite hover:text-brand-latao transition-colors"
                 >
                   +55 11 9 9999-9999
                 </a>
@@ -54,7 +54,7 @@ export default function ContatoPage() {
                   href="https://instagram.com/bossaco"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-brand-graphite hover:text-brand-blue transition-colors"
+                  className="text-brand-graphite hover:text-brand-latao transition-colors"
                 >
                   @bossaco
                 </a>

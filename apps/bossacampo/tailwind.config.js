@@ -8,6 +8,7 @@ module.exports = {
           offwhite: "#F7F4EF",
           graphite: "#2C2C2C",
           green: "#3D5A47",
+          terracota: "#B0603C",
           sand: "#C9B99A",
           gray: "#7A7A7A",
           "gray-light": "#E8E6E0",

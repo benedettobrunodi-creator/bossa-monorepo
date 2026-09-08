@@ -46,7 +46,7 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
           {imovel.tipo} · {imovel.cidade}
           {imovel.bairro ? `, ${imovel.bairro}` : ""}
         </p>
-        <h3 className="font-serif text-xl mb-2 text-brand-graphite group-hover:text-brand-blue transition-colors">
+        <h3 className="font-serif text-xl mb-2 text-brand-graphite group-hover:text-brand-latao transition-colors">
           {imovel.titulo}
         </h3>
         <div className="flex items-center gap-4 text-sm text-brand-gray mb-3">
