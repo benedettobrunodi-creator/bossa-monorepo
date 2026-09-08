@@ -12,10 +12,14 @@ export default async function ImoveisPage({
 }: {
   searchParams: { regiao?: string; tipo?: string };
 }) {
-  const imoveis = await getImoveis("BOSSA_CAMPO", {
-    cidade: searchParams.regiao,
-    tipo: searchParams.tipo,
-  });
+  const todos = await getImoveis("BOSSA_CAMPO");
+  const regioes = [...new Set(todos.map((i) => i.cidade).filter(Boolean))].sort();
+  const tipos = [...new Set(todos.map((i) => i.tipo).filter(Boolean))].sort();
+  const imoveis = todos.filter(
+    (i) =>
+      (!searchParams.regiao || i.cidade === searchParams.regiao) &&
+      (!searchParams.tipo || i.tipo === searchParams.tipo)
+  );
 
   return (
     <>
@@ -28,6 +32,8 @@ export default async function ImoveisPage({
           <ImoveisFilters
             regiaoAtiva={searchParams.regiao}
             tipoAtivo={searchParams.tipo}
+            regioes={regioes}
+            tipos={tipos}
           />
 
           {imoveis.length === 0 ? (

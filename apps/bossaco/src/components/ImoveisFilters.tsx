@@ -2,15 +2,16 @@
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-const CIDADES = ["São Paulo", "Miami"];
-const TIPOS = ["Residencial", "Comercial", "Apartamento", "Casa"];
-
 interface ImoveisFiltersProps {
   cidadeAtiva?: string;
   tipoAtivo?: string;
+  cidades?: string[]; // derivadas do que está publicado
+  tipos?: string[];
 }
 
-export function ImoveisFilters({ cidadeAtiva, tipoAtivo }: ImoveisFiltersProps) {
+export function ImoveisFilters({ cidadeAtiva, tipoAtivo, cidades, tipos }: ImoveisFiltersProps) {
+  const CIDADES = cidades ?? [];
+  const TIPOS = tipos ?? [];
   const t = useTranslations("imoveis.filters");
   const router = useRouter();
   const pathname = usePathname();

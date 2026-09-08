@@ -1,15 +1,16 @@
 "use client";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
-const REGIOES = ["Campinas", "Itu", "Indaiatuba", "Salto", "Porto Feliz", "Itatiba"];
-const TIPOS = ["Residencial", "Casa", "Chácara", "Sítio", "Condomínio"];
-
 interface ImoveisFiltersProps {
   regiaoAtiva?: string;
   tipoAtivo?: string;
+  regioes?: string[]; // derivadas do que está publicado — filtro nunca mostra botão vazio
+  tipos?: string[];
 }
 
-export function ImoveisFilters({ regiaoAtiva, tipoAtivo }: ImoveisFiltersProps) {
+export function ImoveisFilters({ regiaoAtiva, tipoAtivo, regioes, tipos }: ImoveisFiltersProps) {
+  const REGIOES = regioes ?? [];
+  const TIPOS = tipos ?? [];
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
