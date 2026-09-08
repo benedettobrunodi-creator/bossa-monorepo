@@ -1,4 +1,4 @@
-import { getDestaques } from "@bossa/notion-client";
+import { getDestaques, getImoveis } from "@bossa/notion-client";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -10,11 +10,12 @@ export const revalidate = 30;
 
 export default async function HomePage() {
   const destaques = await getDestaques("BOSSA_CAMPO");
+  const capas = (await getImoveis("BOSSA_CAMPO")).map((i) => i.fotos[0]).filter(Boolean).slice(0, 8);
 
   return (
     <>
       <Header />
-      <HeroSlideshow />
+      <HeroSlideshow images={capas} />
       <PropertyCarousel imoveis={destaques} />
 
       <section className="py-24 bg-white">

@@ -15,19 +15,20 @@ const HERO_IMAGES = [
   "https://terrenos-joa.vercel.app/api/foto-publica/0f7decdd-f217-4897-a36e-d5ccd7b35b5a",
 ];
 
-export function HeroSlideshow() {
+export function HeroSlideshow({ images }: { images?: string[] } = {}) {
+  const HERO = images && images.length >= 2 ? images : HERO_IMAGES;
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % HERO_IMAGES.length);
+      setCurrent((c) => (c + 1) % HERO.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {HERO_IMAGES.map((src, i) => (
+      {HERO.map((src, i) => (
         <div key={src} className="absolute inset-0 transition-opacity duration-1000"
           style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}>
           <Image src={src} alt="" fill priority={i === 0} className="object-cover" sizes="100vw" />

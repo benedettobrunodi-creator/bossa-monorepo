@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { getDestaques } from "@bossa/notion-client";
+import { getDestaques, getImoveis } from "@bossa/notion-client";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -12,11 +12,14 @@ export const revalidate = 30;
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations();
   const destaques = await getDestaques("BOSSA_CO");
+  // capas dos anúncios publicados rodando no hero (pedido Bruno 08/09)
+  const capas = (await getImoveis("BOSSA_CO")).map((i) => i.fotos[0]).filter(Boolean).slice(0, 8);
 
   return (
     <>
       <Header />
       <HeroSlideshow
+        images={capas}
         headline={t("hero.headline")}
         ctaPrimary={t("hero.cta_primary")}
         ctaSecondary={t("hero.cta_secondary")}

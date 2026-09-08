@@ -15,23 +15,25 @@ const HERO_IMAGES = [
   "https://terrenos-joa.vercel.app/api/foto-publica/6715d7fa-ac83-40e3-a41b-b971dd7462f0",
 ];
 
-export function HeroSlideshow({ headline, ctaPrimary, ctaSecondary }: {
+export function HeroSlideshow({ headline, ctaPrimary, ctaSecondary, images }: {
   headline: string;
   ctaPrimary: string;
   ctaSecondary: string;
+  images?: string[]; // capas dos anúncios publicados (dinâmico); sem elas, cai na curadoria fixa
 }) {
+  const HERO = images && images.length >= 2 ? images : HERO_IMAGES;
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((c) => (c + 1) % HERO_IMAGES.length);
+      setCurrent((c) => (c + 1) % HERO.length);
     }, 5000);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {HERO_IMAGES.map((src, i) => (
+      {HERO.map((src, i) => (
         <div
           key={src}
           className="absolute inset-0 transition-opacity duration-1000"
