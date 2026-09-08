@@ -14,6 +14,7 @@
     "title": "Imóveis",
     "filters": {
       "cidade": "Cidade",
+      "regiao": "Região",
       "tipo": "Tipo",
       "preco": "Faixa de preço",
       "todas": "Todas",
