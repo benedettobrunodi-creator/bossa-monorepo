@@ -8,7 +8,7 @@ const schema = z.object({
   nome: z.string().min(2, "Nome obrigatório"),
   email: z.string().email("Email inválido"),
   telefone: z.string().min(8, "Telefone obrigatório"),
-  mensagem: z.string().min(10, "Mensagem muito curta"),
+  mensagem: z.string().optional(), // modal compacto não tem o campo — obrigar aqui travava o envio silenciosamente
   imovel: z.string().optional(),
 });
 

@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     }
 
     await resend.emails.send({
-      from: "Bossa & Co. Site <noreply@bossaco.com.br>",
+      from: "Bossa & Co. Site <bossa@ber-engenharia.com.br>",
       to: process.env.CONTACT_EMAIL ?? "bruno@ber-engenharia.com.br",
       reply_to: email,
       subject: imovel
