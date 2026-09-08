@@ -5,7 +5,7 @@ import { PropertyCard } from "@/components/PropertyCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { ImoveisFilters } from "@/components/ImoveisFilters";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export default async function ImoveisPage({
   searchParams,

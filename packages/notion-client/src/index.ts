@@ -39,7 +39,7 @@ function workspaceDe(param: string): string {
 async function buscarVitrine(workspace: string): Promise<Imovel[]> {
   try {
     const r = await fetch(`${VITRINE_URL}?workspace=${workspace}`, {
-      next: { revalidate: 300 },
+      next: { revalidate: 30 },
       signal: AbortSignal.timeout(10000),
     });
     if (!r.ok) return [];

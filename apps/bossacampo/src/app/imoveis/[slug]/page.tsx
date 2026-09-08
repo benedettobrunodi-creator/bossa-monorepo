@@ -7,7 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PropertyGallery } from "@/components/PropertyGallery";
 import { InterestModal } from "@/components/InterestModal";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 interface Props { params: { slug: string } }
 

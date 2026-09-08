@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { PropertyCard } from "@/components/PropertyCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
-export const revalidate = 60;
+export const revalidate = 30;
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
