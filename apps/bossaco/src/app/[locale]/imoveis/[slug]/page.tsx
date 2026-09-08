@@ -1,4 +1,4 @@
-import { getImovel, getImoveis } from "@bossa/notion-client";
+import { getImovel } from "@bossa/notion-client";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -8,15 +8,12 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { PropertyGallery } from "@/components/PropertyGallery";
 import { InterestModal } from "@/components/InterestModal";
 
-export const revalidate = 60;
+// next-intl em Server Components força render dinâmico; com generateStaticParams
+// o Next tentava estático e dava 500 (DYNAMIC_SERVER_USAGE). Página é dinâmica mesmo.
+export const dynamic = "force-dynamic";
 
 interface Props {
   params: { slug: string; locale: string };
-}
-
-export async function generateStaticParams() {
-  const imoveis = await getImoveis("BOSSA_CO");
-  return imoveis.map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
