@@ -12,7 +12,7 @@ export default async function ImoveisPage({
 }: {
   searchParams: { regiao?: string; tipo?: string };
 }) {
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CAMPO!, {
+  const imoveis = await getImoveis("BOSSA_CAMPO", {
     cidade: searchParams.regiao,
     tipo: searchParams.tipo,
   });

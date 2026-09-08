@@ -1,7 +1,8 @@
-import { Client } from "@notionhq/client";
-import type { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
-
-export const notionClient = new Client({ auth: process.env.NOTION_TOKEN });
+// @bossa/notion-client — desde 08/09/26 os imóveis vêm do app de captação Bossa
+// (https://terrenos-joa.vercel.app/api/vitrine), não mais do Notion.
+// A interface pública (Imovel, getImoveis, getDestaques, getImovel) foi mantida;
+// o parâmetro "databaseId" das funções agora recebe o workspace ("BOSSA_CO" | "BOSSA_CAMPO"),
+// vindo das envs NOTION_DB_BOSSA_CO / NOTION_DB_BOSSA_CAMPO (reaproveitadas).
 
 export interface Imovel {
   id: string;
@@ -27,142 +28,50 @@ export interface Imovel {
   proprietario?: string;
 }
 
-function prop(page: PageObjectResponse, name: string): any {
-  return (page.properties as any)[name];
+const VITRINE_URL = process.env.VITRINE_URL ?? "https://terrenos-joa.vercel.app/api/vitrine";
+
+function workspaceDe(param: string): string {
+  const p = (param || "").toUpperCase();
+  if (p.includes("CAMPO")) return "BOSSA_CAMPO";
+  return "BOSSA_CO";
 }
 
-function getText(page: PageObjectResponse, ...names: string[]): string {
-  for (const name of names) {
-    const p = prop(page, name);
-    if (!p) continue;
-    if (p.type === "title" && p.title?.[0]?.plain_text) return p.title[0].plain_text;
-    if (p.type === "rich_text" && p.rich_text?.[0]?.plain_text) return p.rich_text[0].plain_text;
-    if (p.type === "select" && p.select?.name) return p.select.name;
-    if (p.type === "url" && p.url) return p.url;
+async function buscarVitrine(workspace: string): Promise<Imovel[]> {
+  try {
+    const r = await fetch(`${VITRINE_URL}?workspace=${workspace}`, {
+      next: { revalidate: 300 },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!r.ok) return [];
+    const dados = await r.json();
+    if (!Array.isArray(dados)) return [];
+    return dados as Imovel[];
+  } catch (e) {
+    console.error("vitrine indisponível:", e);
+    return [];
   }
-  return "";
-}
-
-function getNumber(page: PageObjectResponse, ...names: string[]): number | undefined {
-  for (const name of names) {
-    const p = prop(page, name);
-    if (p && p.type === "number" && p.number != null) return p.number;
-  }
-  return undefined;
-}
-
-function getCheckbox(page: PageObjectResponse, name: string): boolean {
-  const p = prop(page, name);
-  if (!p || p.type !== "checkbox") return false;
-  return p.checkbox ?? false;
-}
-
-function getUrls(page: PageObjectResponse, ...names: string[]): string[] {
-  const urls: string[] = [];
-  for (const name of names) {
-    const p = prop(page, name);
-    if (!p) continue;
-    if (p.type === "url" && p.url) urls.push(p.url);
-    if (p.type === "files") {
-      p.files.forEach((f: any) => {
-        const url = f.type === "external" ? f.external.url : f.file?.url;
-        if (url) urls.push(url);
-      });
-    }
-  }
-  return urls;
-}
-
-function getMultiSelect(page: PageObjectResponse, name: string): string[] {
-  const p = prop(page, name);
-  if (!p || p.type !== "multi_select") return [];
-  return p.multi_select.map((s: any) => s.name);
-}
-
-export function pageToImovel(page: PageObjectResponse): Imovel {
-  return {
-    id: page.id,
-    slug: getText(page, "Slug"),
-    titulo: getText(page, "Título", "Nome", "Title"),
-    status: getText(page, "Status"),
-    tipo: getText(page, "Tipo"),
-    cidade: getText(page, "Cidade", "Região"),
-    bairro: getText(page, "Bairro") || undefined,
-    regiao: getText(page, "Região") || undefined,
-    condominio: getText(page, "Condomínio") || undefined,
-    area: getNumber(page, "Área (m²)", "Área", "Área construída"),
-    areaConstruida: getNumber(page, "Área construída"),
-    areaTotal: getNumber(page, "Área total"),
-    quartos: getNumber(page, "Quartos"),
-    vagas: getNumber(page, "Vagas"),
-    preco: getNumber(page, "Valor (R$)", "Preço", "Valor"),
-    descricao: getText(page, "Descrição") || undefined,
-    fotos: getUrls(page, "Imagem Principal", "Link Fotos", "Fotos"),
-    destaque: getCheckbox(page, "Destaque"),
-    offCatalog: getCheckbox(page, "Off-Catalog"),
-    amenidades: getMultiSelect(page, "Amenidades"),
-    proprietario: getText(page, "Proprietário") || undefined,
-  };
 }
 
 export async function getImoveis(
   databaseId: string,
   opts?: { offCatalog?: boolean; cidade?: string; tipo?: string }
 ): Promise<Imovel[]> {
-  const filters: any[] = [];
-
-  if (opts?.offCatalog) {
-    filters.push({ property: "Off-Catalog", checkbox: { equals: true } });
-  } else {
-    filters.push({ property: "Status", select: { equals: "Disponível" } });
-    filters.push({ property: "Off-Catalog", checkbox: { equals: false } });
-  }
-
-  if (opts?.cidade) {
-    filters.push({ property: "Cidade", select: { equals: opts.cidade } });
-  }
-  if (opts?.tipo) {
-    filters.push({ property: "Tipo", select: { equals: opts.tipo } });
-  }
-
-  const response = await notionClient.databases.query({
-    database_id: databaseId,
-    filter: filters.length === 1 ? filters[0] : { and: filters },
-  });
-
-  return response.results
-    .filter((p): p is PageObjectResponse => p.object === "page")
-    .map(pageToImovel)
-    .filter((i) => i.slug);
+  let lista = await buscarVitrine(workspaceDe(databaseId));
+  if (opts?.offCatalog) lista = lista.filter((i) => i.offCatalog);
+  else lista = lista.filter((i) => !i.offCatalog);
+  if (opts?.cidade) lista = lista.filter((i) => i.cidade === opts.cidade);
+  if (opts?.tipo) lista = lista.filter((i) => i.tipo === opts.tipo);
+  return lista.filter((i) => i.slug);
 }
 
-export async function getImovel(
-  databaseId: string,
-  slug: string
-): Promise<Imovel | null> {
-  const response = await notionClient.databases.query({
-    database_id: databaseId,
-    filter: { property: "Slug", rich_text: { equals: slug } },
-  });
-
-  const page = response.results.find(
-    (p): p is PageObjectResponse => p.object === "page"
-  );
-  return page ? pageToImovel(page) : null;
+export async function getImovel(databaseId: string, slug: string): Promise<Imovel | null> {
+  const lista = await buscarVitrine(workspaceDe(databaseId));
+  return lista.find((i) => i.slug === slug) ?? null;
 }
 
 export async function getDestaques(databaseId: string): Promise<Imovel[]> {
-  const response = await notionClient.databases.query({
-    database_id: databaseId,
-    filter: {
-      and: [
-        { property: "Destaque", checkbox: { equals: true } },
-      ],
-    },
-    page_size: 3,
-  });
-
-  return response.results
-    .filter((p): p is PageObjectResponse => p.object === "page")
-    .map(pageToImovel);
+  const lista = await buscarVitrine(workspaceDe(databaseId));
+  const destaques = lista.filter((i) => i.destaque && !i.offCatalog);
+  // sem destaques marcados, mostra os mais recentes da vitrine
+  return (destaques.length ? destaques : lista.filter((i) => !i.offCatalog)).slice(0, 6);
 }

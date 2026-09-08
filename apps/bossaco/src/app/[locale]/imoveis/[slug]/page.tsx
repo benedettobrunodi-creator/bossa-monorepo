@@ -15,12 +15,12 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CO!);
+  const imoveis = await getImoveis("BOSSA_CO");
   return imoveis.map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const imovel = await getImovel(process.env.NOTION_DB_BOSSA_CO!, params.slug);
+  const imovel = await getImovel("BOSSA_CO", params.slug);
   if (!imovel) return {};
   return {
     title: imovel.titulo,
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ImovelPage({ params }: Props) {
-  const imovel = await getImovel(process.env.NOTION_DB_BOSSA_CO!, params.slug);
+  const imovel = await getImovel("BOSSA_CO", params.slug);
   if (!imovel) notFound();
 
   const preco =

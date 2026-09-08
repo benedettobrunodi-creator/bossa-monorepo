@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function OffCatalogPage() {
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CO!, { offCatalog: true });
+  const imoveis = await getImoveis("BOSSA_CO", { offCatalog: true });
 
   return (
     <>

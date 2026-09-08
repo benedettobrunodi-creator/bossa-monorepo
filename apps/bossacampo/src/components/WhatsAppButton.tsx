@@ -1,6 +1,6 @@
 "use client";
 
-export function WhatsAppButton({ number = "5511999999999" }: { number?: string }) {
+export function WhatsAppButton({ number = (process.env.NEXT_PUBLIC_WHATSAPP ?? "5511921226156") }: { number?: string }) {
   return (
     <a
       href={`https://wa.me/${number}`}

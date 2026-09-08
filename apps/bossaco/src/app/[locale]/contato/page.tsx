@@ -32,7 +32,7 @@ export default function ContatoPage() {
               <div>
                 <p className="section-label mb-1">WhatsApp</p>
                 <a
-                  href="https://wa.me/5511999999999"
+                  href="https://wa.me/5511921226156"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-brand-graphite hover:text-brand-latao transition-colors"

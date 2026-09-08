@@ -9,7 +9,7 @@ export const revalidate = 60;
 export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 export default async function OffCatalogPage() {
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CAMPO!, { offCatalog: true });
+  const imoveis = await getImoveis("BOSSA_CAMPO", { offCatalog: true });
 
   return (
     <>

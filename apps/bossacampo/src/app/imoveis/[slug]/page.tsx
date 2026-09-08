@@ -12,12 +12,12 @@ export const revalidate = 60;
 interface Props { params: { slug: string } }
 
 export async function generateStaticParams() {
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CAMPO!);
+  const imoveis = await getImoveis("BOSSA_CAMPO");
   return imoveis.map((i) => ({ slug: i.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const imovel = await getImovel(process.env.NOTION_DB_BOSSA_CAMPO!, params.slug);
+  const imovel = await getImovel("BOSSA_CAMPO", params.slug);
   if (!imovel) return {};
   return {
     title: imovel.titulo,
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ImovelPage({ params }: Props) {
-  const imovel = await getImovel(process.env.NOTION_DB_BOSSA_CAMPO!, params.slug);
+  const imovel = await getImovel("BOSSA_CAMPO", params.slug);
   if (!imovel) notFound();
 
   const preco =
