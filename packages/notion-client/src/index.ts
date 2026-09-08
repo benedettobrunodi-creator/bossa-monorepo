@@ -73,5 +73,5 @@ export async function getDestaques(databaseId: string): Promise<Imovel[]> {
   const lista = await buscarVitrine(workspaceDe(databaseId));
   const destaques = lista.filter((i) => i.destaque && !i.offCatalog);
   // sem destaques marcados, mostra os mais recentes da vitrine
-  return (destaques.length ? destaques : lista.filter((i) => !i.offCatalog)).slice(0, 6);
+  return (destaques.length ? destaques : lista.filter((i) => !i.offCatalog)).slice(0, 8);
 }

@@ -15,11 +15,12 @@ export default async function ImoveisPage({
 }) {
   const t = await getTranslations();
   const todos = await getImoveis("BOSSA_CO");
-  const cidades = [...new Set(todos.map((i) => i.cidade).filter(Boolean))].sort();
+  // região = bairro dentro de SP (pedido Bruno 08/09); cai pra cidade quando não há bairro
+  const regioes = [...new Set(todos.map((i) => i.bairro || i.cidade).filter(Boolean))].sort() as string[];
   const tipos = [...new Set(todos.map((i) => i.tipo).filter(Boolean))].sort();
   const imoveis = todos.filter(
     (i) =>
-      (!searchParams.cidade || i.cidade === searchParams.cidade) &&
+      (!searchParams.cidade || (i.bairro || i.cidade) === searchParams.cidade) &&
       (!searchParams.tipo || i.tipo === searchParams.tipo)
   );
 
@@ -34,7 +35,7 @@ export default async function ImoveisPage({
           <ImoveisFilters
             cidadeAtiva={searchParams.cidade}
             tipoAtivo={searchParams.tipo}
-            cidades={cidades}
+            cidades={regioes}
             tipos={tipos}
           />
 
