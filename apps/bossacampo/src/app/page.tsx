@@ -9,7 +9,7 @@ import Link from "next/link";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const destaques = await getDestaques(process.env.NOTION_DB_BOSSA_CAMPO!);
+  const destaques = await getDestaques("BOSSA_CAMPO");
 
   return (
     <>

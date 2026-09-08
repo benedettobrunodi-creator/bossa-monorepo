@@ -14,7 +14,7 @@ export default async function ImoveisPage({
   searchParams: { cidade?: string; tipo?: string };
 }) {
   const t = await getTranslations();
-  const imoveis = await getImoveis(process.env.NOTION_DB_BOSSA_CO!, {
+  const imoveis = await getImoveis("BOSSA_CO", {
     cidade: searchParams.cidade,
     tipo: searchParams.tipo,
   });

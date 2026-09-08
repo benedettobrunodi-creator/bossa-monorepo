@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
   const t = await getTranslations();
-  const destaques = await getDestaques(process.env.NOTION_DB_BOSSA_CO!);
+  const destaques = await getDestaques("BOSSA_CO");
 
   return (
     <>
