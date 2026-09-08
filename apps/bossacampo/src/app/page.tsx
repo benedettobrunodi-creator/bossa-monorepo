@@ -3,7 +3,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { HeroSlideshow } from "@/components/HeroSlideshow";
-import { PropertyCard } from "@/components/PropertyCard";
+import { DestaquesCarrossel } from "@/components/DestaquesCarrossel";
 import Link from "next/link";
 
 export const revalidate = 30;
@@ -16,16 +16,7 @@ export default async function HomePage() {
     <>
       <Header />
       <HeroSlideshow images={capas} />
-      {destaques.length > 0 && (
-        <section className="py-20 max-w-7xl mx-auto px-6">
-          <p className="section-label mb-3">Destaques</p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
-            {destaques.map((imovel) => (
-              <PropertyCard key={imovel.id} imovel={imovel} href={`/imoveis/${imovel.slug}`} />
-            ))}
-          </div>
-        </section>
-      )}
+      <DestaquesCarrossel imoveis={destaques} />
 
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
