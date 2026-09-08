@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+// Fotos reais dos imóveis publicados na vitrine (marca d'água Bossa Campo via
+// proxy /api/foto-publica — aprovado pelo Harvey, nunca a URL original do
+// anúncio de terceiro). Curadoria manual 08/09/26 — trocar quando a vitrine
+// tiver mais captações exclusivas próprias.
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1598228723793-52759bba239c?w=2560&q=80",
-  "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=2560&q=80",
-  "https://images.unsplash.com/photo-1575517111478-7f6afd0973db?w=2560&q=80",
-  "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=2560&q=80",
-  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=2560&q=80",
+  "https://terrenos-joa.vercel.app/api/foto-publica/61c5ae37-f293-4e8a-86d2-60676bda55db",
+  "https://terrenos-joa.vercel.app/api/foto-publica/2f9c2fd6-4eb4-41a5-949a-f34308c42861",
+  "https://terrenos-joa.vercel.app/api/foto-publica/eb9877f8-7616-4aa5-a679-64ae8f7d0c7d",
+  "https://terrenos-joa.vercel.app/api/foto-publica/2c70cd93-d396-4658-8d21-a0d8bcbe62c6",
+  "https://terrenos-joa.vercel.app/api/foto-publica/0f7decdd-f217-4897-a36e-d5ccd7b35b5a",
 ];
 
 export function HeroSlideshow() {

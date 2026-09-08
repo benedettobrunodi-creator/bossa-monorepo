@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
+// Fotos reais dos imóveis publicados na vitrine (marca d'água Bossa & Co. via
+// proxy /api/foto-publica — aprovado pelo Harvey, nunca a URL original do
+// anúncio de terceiro). Curadoria manual 08/09/26 — trocar quando a vitrine
+// tiver mais captações exclusivas próprias.
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=2560&q=80",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=2560&q=80",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=2560&q=80",
-  "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=2560&q=80",
-  "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=2560&q=80",
+  "https://terrenos-joa.vercel.app/api/foto-publica/f41e7f89-daec-4a09-a77a-7bc9064fdfb6",
+  "https://terrenos-joa.vercel.app/api/foto-publica/da570c55-020e-48fd-82b9-71ee5dfdb801",
+  "https://terrenos-joa.vercel.app/api/foto-publica/12b3ba56-82d5-416d-8546-3c97e5be0fa2",
+  "https://terrenos-joa.vercel.app/api/foto-publica/b5f1b534-0f82-4ead-8e40-36a15c4119ee",
+  "https://terrenos-joa.vercel.app/api/foto-publica/6715d7fa-ac83-40e3-a41b-b971dd7462f0",
 ];
 
 export function HeroSlideshow({ headline, ctaPrimary, ctaSecondary }: {
