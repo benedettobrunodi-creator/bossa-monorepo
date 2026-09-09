@@ -20,7 +20,7 @@ export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis
     <div className="overflow-hidden group">
       <div
         className={`flex gap-5 w-max ${reverso ? "anim-carrossel-rev" : "anim-carrossel"} group-hover:[animation-play-state:paused]`}
-        style={{ animationDuration: `${Math.max(30, itens.length * 7)}s` }}
+        style={{ animationDuration: `${Math.max(70, itens.length * 16)}s` }}
       >
         {[...itens, ...itens].map((imovel, i) => (
           <div key={`${imovel.id}-${i}`} className="w-[370px] max-w-[85vw] shrink-0">
