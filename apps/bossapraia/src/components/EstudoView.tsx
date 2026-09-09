@@ -3,6 +3,7 @@ const WHATS = "5511921226156";
 
 type Faixa = { min: number; max: number };
 type Estudo = {
+  opiniao: string | null;
   lead: {
     nome: string; tipo: string; areaM2: number; quartos: number | null;
     arquiteto: string | null; reformado: boolean; local: string; criadoEm: string;
@@ -190,6 +191,17 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
             Na {e.referencias.regiao.rotulo ?? "região"}, imóveis com projeto assinado pedem em mediana R$ {num(e.premio.medianaAssinados)}/m², contra R$ {num(e.premio.medianaNaoAssinados)}/m² dos demais — um prêmio de {e.premio.assinadoPct}% que o nosso banco de dados captura com precisão.
             {e.lead.arquiteto ? ` O seu imóvel, assinado por ${e.lead.arquiteto}, está nesse grupo.` : ""}
           </p>
+        </section>
+      )}
+
+      {/* leitura da casa (opinião gerada dos dados) */}
+      {e.opiniao && (
+        <section className="mb-14 border border-brand-gray-light p-6">
+          <p className="section-label mb-3">A leitura da {marca}</p>
+          {e.opiniao.split(/\n+/).filter(Boolean).map((par, i) => (
+            <p key={i} className="text-sm text-brand-gray leading-relaxed mb-3 last:mb-0">{par}</p>
+          ))}
+          <p className="text-xs text-brand-gray mt-4">Análise do observatório de mercado {marca}, gerada a partir dos dados desta região.</p>
         </section>
       )}
 
