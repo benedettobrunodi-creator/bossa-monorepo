@@ -95,6 +95,7 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                   <th className="py-2 pr-4">Imóvel</th>
                   <th className="py-2 pr-4">Área</th>
                   <th className="py-2 pr-4">Diferenciais</th>
+                  <th className="py-2 pr-4 text-right">vs. mediana</th>
                   <th className="py-2 pr-4 text-right">Preço pedido</th>
                   <th className="py-2 text-right">R$/m²</th>
                 </tr>
@@ -110,20 +111,13 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                     c.loteM2 ? `Lote de ${num(c.loteM2)} m²` : null,
                     c.vagas && c.vagas >= 4 ? `${c.vagas} vagas` : null,
                   ].filter(Boolean).slice(0, 2);
-                  const difTexto = difs.length
-                    ? difs.join(" · ")
-                    : delta == null
-                      ? "Padrão do condomínio"
-                      : delta > 3
-                        ? `Pede ${delta}% acima da mediana`
-                        : delta < -3
-                          ? `Pede ${Math.abs(delta)}% abaixo da mediana`
-                          : "Alinhado à mediana da região";
+                  const vsMediana = delta == null ? "—" : delta > 1 ? `+${delta}%` : delta < -1 ? `−${Math.abs(delta)}%` : "na mediana";
                   return (
                     <tr key={i} className="border-b border-brand-gray-light/60">
                       <td className="py-2.5 pr-4 whitespace-nowrap"><span className="text-xs text-brand-gray mr-2">Ref. {String(i + 1).padStart(2, "0")}</span>{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
                       <td className="py-2.5 pr-4">{num(c.areaM2)} m²</td>
-                      <td className="py-2.5 pr-4 text-xs text-brand-gray">{difTexto}</td>
+                      <td className="py-2.5 pr-4 text-xs text-brand-gray">{difs.length ? difs.join(" · ") : "—"}</td>
+                      <td className="py-2.5 pr-4 text-right text-xs text-brand-gray">{vsMediana}</td>
                       <td className="py-2.5 pr-4 text-right">{brl(c.preco)}</td>
                       <td className="py-2.5 text-right">{num(c.precoM2)}</td>
                     </tr>
