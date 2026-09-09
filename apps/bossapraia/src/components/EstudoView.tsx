@@ -13,7 +13,7 @@ type Estudo = {
     condominio: { rotulo: string | null; medianaM2: number | null; amostra: number };
     regiao: { rotulo: string | null; medianaM2: number | null; amostra: number };
   };
-  comparaveis: { tipo: string; areaM2: number; quartos: number | null; arquiteto: string | null; reformado: boolean; preco: number; precoM2: number }[];
+  comparaveis: { tipo: string; areaM2: number; quartos: number | null; arquiteto: string | null; reformado: boolean; vagas: number | null; vista: string | null; loteM2: number | null; preco: number; precoM2: number }[];
   regua: { rotulo: string; min: number; mediana: number | null; max: number; posicao: number | null } | null;
   panorama: { ofertaCondominio: number; ofertaRegiao: number; ticketMedioRegiao: number | null; pctAssinadosRegiao: number | null };
   premio: { assinadoPct: number | null; medianaAssinados: number | null; medianaNaoAssinados: number | null };
@@ -100,15 +100,35 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                 </tr>
               </thead>
               <tbody>
-                {e.comparaveis.map((c, i) => (
-                  <tr key={i} className="border-b border-brand-gray-light/60">
-                    <td className="py-2.5 pr-4">{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
-                    <td className="py-2.5 pr-4">{num(c.areaM2)} m²</td>
-                    <td className="py-2.5 pr-4 text-xs text-brand-gray">{[c.arquiteto ? `✦ ${c.arquiteto}` : null, c.reformado ? "Reformado" : null].filter(Boolean).join(" · ") || "—"}</td>
-                    <td className="py-2.5 pr-4 text-right">{brl(c.preco)}</td>
-                    <td className="py-2.5 text-right">{num(c.precoM2)}</td>
-                  </tr>
-                ))}
+                {e.comparaveis.map((c, i) => {
+                  const med = e.regua?.mediana ?? null;
+                  const delta = med ? Math.round(((c.precoM2 - med) / med) * 100) : null;
+                  const difs = [
+                    c.arquiteto ? `✦ ${c.arquiteto}` : null,
+                    c.reformado ? "Reformado" : null,
+                    c.vista ? `Vista ${c.vista.toLowerCase()}` : null,
+                    c.loteM2 ? `Lote de ${num(c.loteM2)} m²` : null,
+                    c.vagas && c.vagas >= 4 ? `${c.vagas} vagas` : null,
+                  ].filter(Boolean).slice(0, 2);
+                  const difTexto = difs.length
+                    ? difs.join(" · ")
+                    : delta == null
+                      ? "Padrão do condomínio"
+                      : delta > 3
+                        ? `Pede ${delta}% acima da mediana`
+                        : delta < -3
+                          ? `Pede ${Math.abs(delta)}% abaixo da mediana`
+                          : "Alinhado à mediana da região";
+                  return (
+                    <tr key={i} className="border-b border-brand-gray-light/60">
+                      <td className="py-2.5 pr-4 whitespace-nowrap"><span className="text-xs text-brand-gray mr-2">Ref. {String(i + 1).padStart(2, "0")}</span>{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
+                      <td className="py-2.5 pr-4">{num(c.areaM2)} m²</td>
+                      <td className="py-2.5 pr-4 text-xs text-brand-gray">{difTexto}</td>
+                      <td className="py-2.5 pr-4 text-right">{brl(c.preco)}</td>
+                      <td className="py-2.5 text-right">{num(c.precoM2)}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
