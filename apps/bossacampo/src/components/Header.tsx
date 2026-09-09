@@ -16,6 +16,15 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: "#3D5A47" }}>
+      {/* barra do grupo Bossa — cross-link (Bruno 09/09) */}
+      <div className="flex items-center justify-center gap-3 text-[11px] tracking-wide py-1.5" style={{ backgroundColor: "#1E1E22" }}>
+            <a href="https://bossaeco.com.br" className="text-white/50 hover:text-white transition-colors">Bossa &amp; Co.</a>
+            <span className="text-white/25">·</span>
+            <span className="text-white font-semibold">Bossa Campo</span>
+            <span className="text-white/25">·</span>
+            <a href="https://bossapraia.com.br" className="text-white/50 hover:text-white transition-colors">Bossa Praia</a>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="font-serif text-xl tracking-wide" style={{ color: "#C9B99A" }}>
           Bossa Campo

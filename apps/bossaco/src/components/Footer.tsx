@@ -52,6 +52,29 @@ export function Footer() {
             <p>Miami, FL — USA</p>
           </div>
         </div>
+
+        {/* as casas Bossa — cross-link do ecossistema (Bruno 09/09) */}
+        <div className="md:col-span-3 border-t border-white/10 pt-6 mt-2">
+          <p className="text-[10px] tracking-[0.25em] uppercase text-white/40 mb-3">As casas Bossa</p>
+          <div className="flex flex-wrap gap-x-8 gap-y-2 font-serif text-lg">
+            {true ? (
+              <span className="text-white">Bossa &amp; Co.</span>
+            ) : (
+              <a href="https://bossaeco.com.br" className="text-white/50 hover:text-white transition-colors">Bossa &amp; Co.</a>
+            )}
+            {false ? (
+              <span className="text-white">Bossa Campo</span>
+            ) : (
+              <a href="https://bossacampo.com.br" className="text-white/50 hover:text-white transition-colors">Bossa Campo</a>
+            )}
+            {false ? (
+              <span className="text-white">Bossa Praia</span>
+            ) : (
+              <a href="https://bossapraia.com.br" className="text-white/50 hover:text-white transition-colors">Bossa Praia</a>
+            )}
+          </div>
+        </div>
+
       </div>
 
       <div className="border-t border-white/10">
