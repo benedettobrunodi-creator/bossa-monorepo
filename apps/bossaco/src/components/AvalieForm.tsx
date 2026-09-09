@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 const API = "https://terrenos-joa.vercel.app";
 
 type Local = { id: string | null; rotulo: string; nome: string; cidade: string | null };
+type Faixa = { min: number; max: number };
 type Resultado = {
   modo: "FAIXA" | "PERSONALIZADA";
   faixaMin: number | null;
   faixaMax: number | null;
+  faixas: { agil: Faixa; mercado: Faixa; premium: Faixa } | null;
   referencias: {
     condominio: { rotulo: string | null; medianaM2: number | null; amostra: number };
     regiao: { rotulo: string | null; medianaM2: number | null; amostra: number };
@@ -112,12 +114,33 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
         {resultado.modo === "FAIXA" ? (
           <>
             <p className="section-label mb-3">Estimativa preliminar</p>
-            <p className="font-serif text-4xl md:text-5xl mb-2">
-              {brl(resultado.faixaMin)} <span className="text-brand-gray text-2xl">a</span> {brl(resultado.faixaMax)}
+            <p className="text-sm text-brand-gray mb-8">
+              Três posicionamentos possíveis, calculados com base em anúncios reais monitorados pela nossa equipe.
             </p>
-            <p className="text-sm text-brand-gray mb-10">
-              Faixa calculada com base em anúncios reais monitorados pela nossa equipe.
-            </p>
+            {resultado.faixas && (() => {
+              const destaque = arquiteto || reformado ? "premium" : "mercado";
+              const cards = [
+                { k: "agil", titulo: "Venda Ágil", f: resultado.faixas.agil, desc: "Posicionamento para liquidez — atrai comprador em semanas." },
+                { k: "mercado", titulo: "Valor de Mercado", f: resultado.faixas.mercado, desc: "Alinhado aos imóveis comparáveis da região." },
+                { k: "premium", titulo: "Posicionamento Premium", f: resultado.faixas.premium, desc: "Para imóveis impecáveis, assinados ou reformados — venda mais paciente." },
+              ];
+              return (
+                <div className="grid md:grid-cols-3 gap-4 text-left mb-10">
+                  {cards.map((c) => (
+                    <div key={c.k} className={`border p-5 ${c.k === destaque ? "border-brand-graphite" : "border-brand-gray-light"}`}>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <p className="section-label">{c.titulo}</p>
+                        {c.k === destaque && (
+                          <span className="text-[10px] tracking-widest uppercase bg-brand-graphite text-white px-2 py-0.5">Recomendado</span>
+                        )}
+                      </div>
+                      <p className="font-serif text-xl leading-snug">{brl(c.f.min)}<br /><span className="text-brand-gray text-sm">a</span> {brl(c.f.max)}</p>
+                      <p className="text-xs text-brand-gray mt-2">{c.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
             <div className="grid grid-cols-2 gap-4 text-left mb-10">
               <div className="border border-brand-gray-light p-5">
                 <p className="section-label mb-2">{ref.condominio.rotulo ?? "Seu local"}</p>
