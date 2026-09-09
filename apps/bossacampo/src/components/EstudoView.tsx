@@ -129,7 +129,7 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                   const vsMediana = delta == null ? "—" : delta > 1 ? `+${delta}%` : delta < -1 ? `−${Math.abs(delta)}%` : "na mediana";
                   return (
                     <tr key={i} className="border-b border-brand-gray-light/60">
-                      <td className="py-2.5 pr-4 whitespace-nowrap">{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
+                      <td className="py-2.5 pr-4 whitespace-nowrap">{c.tipo}</td>
                       <td className="py-2.5 pr-4 whitespace-nowrap">{num(c.areaM2)} m²</td>
                       <td className="py-2.5 pr-4 text-xs text-brand-gray">{difs.join(" · ")}</td>
                       <td className="py-2.5 pr-4 text-right text-xs text-brand-gray">{vsMediana}</td>
