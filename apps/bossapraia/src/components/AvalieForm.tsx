@@ -56,6 +56,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   const [reformado, setReformado] = useState(false);
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [email, setEmail] = useState("");
   const [enviando, setEnviando] = useState(false);
   const [erro, setErro] = useState("");
   const [resultado, setResultado] = useState<Resultado | null>(null);
@@ -78,6 +79,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
     if (!local && busca.length < 2) { setErro(workspace === "BOSSA_CO" ? "Escolha o bairro." : "Escolha o condomínio."); return; }
     if (!area || Number(area) <= 0) { setErro("Informe a área construída."); return; }
     if (nome.trim().length < 2 || whatsapp.replace(/\D/g, "").length < 10) { setErro("Preencha nome e WhatsApp."); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())) { setErro("Informe um e-mail válido — o estudo completo vai pra lá."); return; }
     setEnviando(true);
     try {
       const r = await fetch(`${API}/api/avaliar`, {
@@ -90,7 +92,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           cidade: local?.cidade ?? undefined,
           tipo, areaUtilM2: Number(area),
           quartos: quartos ? Number(quartos) : null,
-          nome: nome.trim(), whatsapp: whatsapp.replace(/\D/g, ""),
+          nome: nome.trim(), whatsapp: whatsapp.replace(/\D/g, ""), email: email.trim().toLowerCase(),
           arquiteto: arquiteto || null, reformado,
           origem: workspace === "BOSSA_CO" ? "bossaeco.com.br" : workspace === "BOSSA_PRAIA" ? "bossapraia.com.br" : "bossacampo.com.br",
         }),
@@ -188,7 +190,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           Receber estudo completo no WhatsApp
         </a>
         <p className="text-xs text-brand-gray mt-6">
-          Estimativa preliminar, não substitui avaliação presencial.
+          📩 O estudo completo em PDF foi enviado para o seu e-mail. Estimativa preliminar, não substitui avaliação presencial.
         </p>
       </div>
     );
@@ -317,6 +319,11 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           <input value={whatsapp} onChange={(e) => setWhatsapp(e.target.value)} inputMode="tel" placeholder="(11) 9…"
             className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite" />
         </div>
+      </div>
+      <div>
+        <label className="section-label block mb-2">E-mail — o estudo completo em PDF vai pra cá</label>
+        <input value={email} onChange={(e) => setEmail(e.target.value)} inputMode="email" placeholder="voce@exemplo.com.br"
+          className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite" />
       </div>
       {erro && <p className="text-xs text-red-500">{erro}</p>}
       <button type="submit" disabled={enviando}
