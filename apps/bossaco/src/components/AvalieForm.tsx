@@ -14,6 +14,29 @@ type Resultado = {
   };
 };
 
+// Nomes canônicos — mesmo dicionário de normalização do app de captação
+const ARQUITETOS = [
+  "Bernardes Arquitetura",
+  "David Bastos",
+  "Debora Aguiar",
+  "Felipe Hess",
+  "Fernanda Marques",
+  "Gui Mattos",
+  "Isay Weinfeld",
+  "Jacobsen Arquitetura",
+  "João Armentano",
+  "Marcio Kogan (studio mk27)",
+  "Nitsche Arquitetos",
+  "Pascali Semerdjian",
+  "Patricia Anastassiadis",
+  "Paulo Mendes da Rocha",
+  "Roberto Migotto",
+  "Ruy Ohtake",
+  "Sig Bergamin",
+  "Studio Arthur Casas",
+  "Triptyque",
+];
+
 const brl = (v: number | null) =>
   v != null ? v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }) : "—";
 
@@ -24,7 +47,9 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   const [tipo, setTipo] = useState(workspace === "BOSSA_CO" ? "APARTAMENTO" : "CASA");
   const [area, setArea] = useState("");
   const [quartos, setQuartos] = useState("");
-  const [arquiteto, setArquiteto] = useState("");
+  const [arqSel, setArqSel] = useState("");
+  const [arqOutro, setArqOutro] = useState("");
+  const arquiteto = arqSel === "OUTRO" ? arqOutro.trim() : arqSel;
   const [reformado, setReformado] = useState(false);
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -63,7 +88,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           tipo, areaUtilM2: Number(area),
           quartos: quartos ? Number(quartos) : null,
           nome: nome.trim(), whatsapp: whatsapp.replace(/\D/g, ""),
-          arquiteto: arquiteto.trim() || null, reformado,
+          arquiteto: arquiteto || null, reformado,
           origem: workspace === "BOSSA_CO" ? "bossaeco.com.br" : "bossacampo.com.br",
         }),
       });
@@ -116,9 +141,9 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
             </p>
           </>
         )}
-        {(arquiteto.trim() || reformado) && resultado.modo === "FAIXA" && (
+        {(arquiteto || reformado) && resultado.modo === "FAIXA" && (
           <p className="text-sm text-brand-gray mb-8 -mt-4">
-            {arquiteto.trim() ? `Imóveis assinados${arquiteto.trim() ? ` por ${arquiteto.trim()}` : ""}` : "Imóveis reformados"} costumam
+            {arquiteto ? `Imóveis assinados por ${arquiteto}` : "Imóveis reformados"} costumam
             se posicionar acima da faixa — no estudo completo detalhamos esse diferencial.
           </p>
         )}
@@ -201,8 +226,19 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="section-label block mb-2">Arquiteto (se assinado)</label>
-          <input value={arquiteto} onChange={(e) => setArquiteto(e.target.value)} placeholder="Ex.: Isay Weinfeld"
-            className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite" />
+          <select value={arqSel} onChange={(e) => setArqSel(e.target.value)}
+            className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none">
+            <option value="">Não se aplica / não sei</option>
+            {ARQUITETOS.map((a) => (
+              <option key={a} value={a}>{a}</option>
+            ))}
+            <option value="OUTRO">Outro…</option>
+          </select>
+          {arqSel === "OUTRO" && (
+            <input value={arqOutro} onChange={(e) => setArqOutro(e.target.value)} placeholder="Nome do arquiteto"
+              autoFocus
+              className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm mt-1 focus:outline-none focus:border-brand-graphite" />
+          )}
         </div>
         <div className="flex items-end pb-3">
           <button type="button" onClick={() => setReformado(!reformado)}
