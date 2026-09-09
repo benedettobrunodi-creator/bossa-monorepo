@@ -15,7 +15,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: "#3D5A47" }}>
+    <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: "#2E5A6B" }}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="font-serif text-xl tracking-wide" style={{ color: "#C9B99A" }}>
           Bossa Praia
@@ -28,7 +28,7 @@ export function Header() {
             </Link>
           ))}
           <Link href="/off-catalog"
-            className="text-xs tracking-widest uppercase px-4 py-2 border transition-all duration-300 hover:bg-[#C9B99A] hover:text-[#3D5A47]"
+            className="text-xs tracking-widest uppercase px-4 py-2 border transition-all duration-300 hover:bg-[#C9B99A] hover:text-[#2E5A6B]"
             style={{ borderColor: "#C9B99A", color: "#C9B99A" }}>
             Off-Catalog
           </Link>
@@ -40,7 +40,7 @@ export function Header() {
         </button>
       </div>
       {open && (
-        <div className="md:hidden border-t px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "#3D5A47", borderColor: "#4e7260" }}>
+        <div className="md:hidden border-t px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "#2E5A6B", borderColor: "#3F7285" }}>
           {links.map((l) => (
             <Link key={l.href} href={l.href} className="text-sm tracking-wide" style={{ color: "#C9B99A" }} onClick={() => setOpen(false)}>
               {l.label}

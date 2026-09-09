@@ -6,9 +6,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
           <p className="font-serif text-2xl mb-1" style={{ color: "#9BC0CE" }}>Bossa Praia</p>
-          <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "#9BC0CE" }}>Interior de São Paulo</p>
+          <p className="text-xs tracking-widest uppercase mb-4" style={{ color: "#9BC0CE" }}>Litoral de São Paulo</p>
           <p className="text-sm text-white/60 leading-relaxed">
-            Curadoria de propriedades residenciais no interior de São Paulo.
+            Curadoria de propriedades no litoral de São Paulo.
           </p>
         </div>
 
@@ -37,7 +37,7 @@ export function Footer() {
             <a href="https://wa.me/5511921226156" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               WhatsApp
             </a>
-            <p className="mt-2">Campinas · Itu · Indaiatuba e região</p>
+            <p className="mt-2">Riviera de São Lourenço · Maresias · Guarujá e região</p>
           </div>
         </div>
       </div>

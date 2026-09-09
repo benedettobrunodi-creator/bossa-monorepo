@@ -34,7 +34,7 @@ export async function POST(req: Request) {
           </h2>
           <table style="width: 100%; border-collapse: collapse;">
             <tr><td style="padding: 8px 0; color: #7A7A7A; font-size: 13px; width: 100px;">Nome</td><td style="padding: 8px 0; font-size: 15px;">${nome}</td></tr>
-            <tr><td style="padding: 8px 0; color: #7A7A7A; font-size: 13px;">Email</td><td style="padding: 8px 0; font-size: 15px;"><a href="mailto:${email}" style="color: #3D5A47;">${email}</a></td></tr>
+            <tr><td style="padding: 8px 0; color: #7A7A7A; font-size: 13px;">Email</td><td style="padding: 8px 0; font-size: 15px;"><a href="mailto:${email}" style="color: #2E5A6B;">${email}</a></td></tr>
             <tr><td style="padding: 8px 0; color: #7A7A7A; font-size: 13px;">Telefone</td><td style="padding: 8px 0; font-size: 15px;">${telefone}</td></tr>
             ${mensagem ? `<tr><td style="padding: 8px 0; color: #7A7A7A; font-size: 13px; vertical-align: top;">Mensagem</td><td style="padding: 8px 0; font-size: 15px;">${mensagem}</td></tr>` : ""}
           </table>
