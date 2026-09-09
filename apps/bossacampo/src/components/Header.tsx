@@ -5,6 +5,7 @@ import { useState } from "react";
 
 const links = [
   { href: "/imoveis", label: "Propriedades" },
+  { href: "/avalie", label: "Avalie seu imóvel" },
   { href: "/sobre", label: "Sobre" },
   { href: "/contato", label: "Contato" },
 ];

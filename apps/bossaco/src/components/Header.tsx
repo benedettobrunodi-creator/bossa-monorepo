@@ -15,6 +15,7 @@ export function Header() {
 
   const links = [
     { href: "/imoveis", label: t("imoveis") },
+    { href: "/avalie", label: "Avalie seu imóvel" },
     { href: "/sobre", label: t("sobre") },
     { href: "/contato", label: t("contato") },
   ];
