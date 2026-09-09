@@ -15,10 +15,12 @@ export default async function ImoveisPage({
   const todos = await getImoveis("BOSSA_CAMPO");
   const regioes = [...new Set(todos.map((i) => i.cidade).filter(Boolean))].sort();
   const tipos = [...new Set(todos.map((i) => i.tipo).filter(Boolean))].sort();
+  const arquitetos = [...new Set(todos.map((i) => i.arquiteto).filter(Boolean))].sort() as string[];
   const imoveis = todos.filter(
     (i) =>
       (!searchParams.regiao || i.cidade === searchParams.regiao) &&
-      (!searchParams.tipo || i.tipo === searchParams.tipo)
+      (!searchParams.tipo || i.tipo === searchParams.tipo) &&
+      (!searchParams.arquiteto || i.arquiteto === searchParams.arquiteto)
   );
 
   return (
