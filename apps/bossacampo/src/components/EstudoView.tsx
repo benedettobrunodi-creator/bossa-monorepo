@@ -13,7 +13,7 @@ type Estudo = {
     condominio: { rotulo: string | null; medianaM2: number | null; amostra: number };
     regiao: { rotulo: string | null; medianaM2: number | null; amostra: number };
   };
-  comparaveis: { tipo: string; areaM2: number; quartos: number | null; arquiteto: string | null; reformado: boolean; vagas: number | null; vista: string | null; loteM2: number | null; temMata: boolean; temRio: boolean; topoPlano: boolean; andar: number | null; preco: number; precoM2: number }[];
+  comparaveis: { tipo: string; areaM2: number; quartos: number | null; arquiteto: string | null; reformado: boolean; vagas: number | null; vista: string | null; loteM2: number | null; temMata: boolean; temRio: boolean; topoPlano: boolean; andar: number | null; diferenciais: string | null; preco: number; precoM2: number }[];
   regua: { rotulo: string; min: number; mediana: number | null; max: number; posicao: number | null } | null;
   panorama: { ofertaCondominio: number; ofertaRegiao: number; ticketMedioRegiao: number | null; pctAssinadosRegiao: number | null };
   premio: { assinadoPct: number | null; medianaAssinados: number | null; medianaNaoAssinados: number | null };
@@ -106,9 +106,11 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                   const delta = med ? Math.round(((c.precoM2 - med) / med) * 100) : null;
                   const areas = e.comparaveis.map((x) => x.areaM2).sort((a2, b2) => a2 - b2);
                   const medArea = areas[Math.floor(areas.length / 2)];
+                  const doAnuncio = (c.diferenciais ?? "").split(";").map((x) => x.trim()).filter(Boolean);
                   const difs = [
                     c.arquiteto ? `✦ ${c.arquiteto}` : null,
                     c.reformado ? "Reformado" : null,
+                    ...doAnuncio,
                     c.vista ? `Vista ${c.vista.toLowerCase()}` : null,
                     c.loteM2 ? `Lote de ${num(c.loteM2)} m²` : null,
                     c.temMata ? "Mata nativa" : null,
@@ -116,7 +118,7 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                     c.topoPlano ? "Terreno plano" : null,
                     c.andar && c.andar >= 8 ? `${c.andar}º andar` : null,
                     c.vagas && c.vagas >= 2 ? `${c.vagas} vagas` : null,
-                  ].filter(Boolean).slice(0, 2);
+                  ].filter(Boolean).slice(0, 3);
                   if (difs.length === 0) {
                     difs.push(
                       c.areaM2 >= medArea * 1.15 ? "Entre as maiores metragens da amostra"
@@ -127,8 +129,8 @@ export function EstudoView({ e, marca }: { e: Estudo; marca: string }) {
                   const vsMediana = delta == null ? "—" : delta > 1 ? `+${delta}%` : delta < -1 ? `−${Math.abs(delta)}%` : "na mediana";
                   return (
                     <tr key={i} className="border-b border-brand-gray-light/60">
-                      <td className="py-2.5 pr-4 whitespace-nowrap"><span className="text-xs text-brand-gray mr-2">Ref. {String(i + 1).padStart(2, "0")}</span>{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
-                      <td className="py-2.5 pr-4">{num(c.areaM2)} m²</td>
+                      <td className="py-2.5 pr-4 whitespace-nowrap">{c.tipo}{c.quartos ? ` · ${c.quartos}q` : ""}</td>
+                      <td className="py-2.5 pr-4 whitespace-nowrap">{num(c.areaM2)} m²</td>
                       <td className="py-2.5 pr-4 text-xs text-brand-gray">{difs.join(" · ")}</td>
                       <td className="py-2.5 pr-4 text-right text-xs text-brand-gray">{vsMediana}</td>
                       <td className="py-2.5 pr-4 text-right">{brl(c.preco)}</td>
