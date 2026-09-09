@@ -24,6 +24,8 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   const [tipo, setTipo] = useState(workspace === "BOSSA_CO" ? "APARTAMENTO" : "CASA");
   const [area, setArea] = useState("");
   const [quartos, setQuartos] = useState("");
+  const [arquiteto, setArquiteto] = useState("");
+  const [reformado, setReformado] = useState(false);
   const [nome, setNome] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
   const [enviando, setEnviando] = useState(false);
@@ -61,6 +63,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           tipo, areaUtilM2: Number(area),
           quartos: quartos ? Number(quartos) : null,
           nome: nome.trim(), whatsapp: whatsapp.replace(/\D/g, ""),
+          arquiteto: arquiteto.trim() || null, reformado,
           origem: workspace === "BOSSA_CO" ? "bossaeco.com.br" : "bossacampo.com.br",
         }),
       });
@@ -112,6 +115,12 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
               Um especialista retorna ainda hoje.
             </p>
           </>
+        )}
+        {(arquiteto.trim() || reformado) && resultado.modo === "FAIXA" && (
+          <p className="text-sm text-brand-gray mb-8 -mt-4">
+            {arquiteto.trim() ? `Imóveis assinados${arquiteto.trim() ? ` por ${arquiteto.trim()}` : ""}` : "Imóveis reformados"} costumam
+            se posicionar acima da faixa — no estudo completo detalhamos esse diferencial.
+          </p>
         )}
         <div className="border border-brand-gray-light p-6 mb-8 text-left">
           <p className="section-label mb-2">Estudo de mercado completo</p>
@@ -187,6 +196,19 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           <input value={quartos} onChange={(e) => setQuartos(e.target.value.replace(/\D/g, ""))} inputMode="numeric"
             placeholder="Ex.: 4"
             className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite" />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="section-label block mb-2">Arquiteto (se assinado)</label>
+          <input value={arquiteto} onChange={(e) => setArquiteto(e.target.value)} placeholder="Ex.: Isay Weinfeld"
+            className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite" />
+        </div>
+        <div className="flex items-end pb-3">
+          <button type="button" onClick={() => setReformado(!reformado)}
+            className={`text-xs tracking-widest uppercase px-4 py-2 border transition-colors ${reformado ? "border-brand-graphite bg-brand-graphite text-white" : "border-brand-gray-light text-brand-gray hover:border-brand-graphite"}`}>
+            {reformado ? "✓ Reformado" : "Reformado?"}
+          </button>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-4">
