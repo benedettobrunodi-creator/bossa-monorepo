@@ -36,6 +36,20 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
             <span className="font-serif text-brand-gray text-lg opacity-40">{imovel.tipo || "Propriedade"}</span>
           </div>
         )}
+        {(imovel.arquiteto || imovel.reformado) && (
+          <div className="absolute bottom-3 left-3 flex flex-col gap-1 items-start">
+            {imovel.arquiteto && (
+              <span className="bg-brand-green/90 text-white text-[10px] tracking-widest uppercase px-2.5 py-1">
+                Assinado · {imovel.arquiteto}
+              </span>
+            )}
+            {imovel.reformado && (
+              <span className="bg-white/90 text-brand-graphite text-[10px] tracking-widest uppercase px-2.5 py-1">
+                Reformado
+              </span>
+            )}
+          </div>
+        )}
         {showBadge && (
           <span className="absolute top-3 left-3 bg-brand-green text-white text-xs tracking-widest uppercase px-3 py-1">
             Exclusivo

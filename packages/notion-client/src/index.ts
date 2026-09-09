@@ -22,6 +22,8 @@ export interface Imovel {
   preco?: number;
   descricao?: string;
   fotos: string[];
+  arquiteto?: string;
+  reformado?: boolean;
   destaque: boolean;
   offCatalog: boolean;
   amenidades?: string[];

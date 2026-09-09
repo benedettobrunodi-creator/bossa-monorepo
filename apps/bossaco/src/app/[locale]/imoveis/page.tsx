@@ -11,17 +11,19 @@ export const revalidate = 30;
 export default async function ImoveisPage({
   searchParams,
 }: {
-  searchParams: { cidade?: string; tipo?: string };
+  searchParams: { cidade?: string; tipo?: string; arquiteto?: string };
 }) {
   const t = await getTranslations();
   const todos = await getImoveis("BOSSA_CO");
   // região = bairro dentro de SP (pedido Bruno 08/09); cai pra cidade quando não há bairro
   const regioes = [...new Set(todos.map((i) => i.bairro || i.cidade).filter(Boolean))].sort() as string[];
   const tipos = [...new Set(todos.map((i) => i.tipo).filter(Boolean))].sort();
+  const arquitetos = [...new Set(todos.map((i) => i.arquiteto).filter(Boolean))].sort() as string[];
   const imoveis = todos.filter(
     (i) =>
       (!searchParams.cidade || (i.bairro || i.cidade) === searchParams.cidade) &&
-      (!searchParams.tipo || i.tipo === searchParams.tipo)
+      (!searchParams.tipo || i.tipo === searchParams.tipo) &&
+      (!searchParams.arquiteto || i.arquiteto === searchParams.arquiteto)
   );
 
   return (
@@ -37,6 +39,8 @@ export default async function ImoveisPage({
             tipoAtivo={searchParams.tipo}
             cidades={regioes}
             tipos={tipos}
+            arquitetos={arquitetos}
+            arquitetoAtivo={searchParams.arquiteto}
           />
 
           {imoveis.length === 0 ? (

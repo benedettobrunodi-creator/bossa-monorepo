@@ -49,6 +49,12 @@ export default async function ImovelPage({ params }: Props) {
               {imovel.condominio ? ` · ${imovel.condominio}` : ""}
             </p>
             <h1 className="font-serif text-4xl md:text-5xl mb-6">{imovel.titulo}</h1>
+            {(imovel.arquiteto || imovel.reformado) && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {imovel.arquiteto && <span className="bg-brand-green text-white text-[10px] tracking-widest uppercase px-3 py-1.5">Assinado · {imovel.arquiteto}</span>}
+                {imovel.reformado && <span className="border border-brand-gray-light text-brand-graphite text-[10px] tracking-widest uppercase px-3 py-1.5">Reformado</span>}
+              </div>
+            )}
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-8 border-y border-brand-gray-light mb-10">
               {imovel.areaConstruida && (

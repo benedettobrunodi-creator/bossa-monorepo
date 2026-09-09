@@ -7,9 +7,11 @@ interface ImoveisFiltersProps {
   tipoAtivo?: string;
   cidades?: string[]; // derivadas do que está publicado
   tipos?: string[];
+  arquitetos?: string[];
+  arquitetoAtivo?: string;
 }
 
-export function ImoveisFilters({ cidadeAtiva, tipoAtivo, cidades, tipos }: ImoveisFiltersProps) {
+export function ImoveisFilters({ cidadeAtiva, tipoAtivo, cidades, tipos, arquitetos, arquitetoAtivo }: ImoveisFiltersProps) {
   const CIDADES = cidades ?? [];
   const TIPOS = tipos ?? [];
   const t = useTranslations("imoveis.filters");
@@ -71,6 +73,21 @@ export function ImoveisFilters({ cidadeAtiva, tipoAtivo, cidades, tipos }: Imove
           </button>
         ))}
       </div>
+
+      {(arquitetos?.length ?? 0) > 0 && (
+        <div className="flex flex-wrap gap-2 items-center ml-4">
+          <span className="text-xs text-brand-gray tracking-wide mr-1">Arquiteto:</span>
+          <button className={`${btnBase} ${!arquitetoAtivo ? active : inactive}`} onClick={() => setFilter("arquiteto", null)}>
+            Todos
+          </button>
+          {arquitetos!.map((a) => (
+            <button key={a} className={`${btnBase} ${arquitetoAtivo === a ? active : inactive}`}
+              onClick={() => setFilter("arquiteto", arquitetoAtivo === a ? null : a)}>
+              {a}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

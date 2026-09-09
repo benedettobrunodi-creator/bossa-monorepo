@@ -10,7 +10,7 @@ export const revalidate = 30;
 export default async function ImoveisPage({
   searchParams,
 }: {
-  searchParams: { regiao?: string; tipo?: string };
+  searchParams: { regiao?: string; tipo?: string; arquiteto?: string };
 }) {
   const todos = await getImoveis("BOSSA_CAMPO");
   const regioes = [...new Set(todos.map((i) => i.cidade).filter(Boolean))].sort();
@@ -34,6 +34,8 @@ export default async function ImoveisPage({
             tipoAtivo={searchParams.tipo}
             regioes={regioes}
             tipos={tipos}
+            arquitetos={arquitetos}
+            arquitetoAtivo={searchParams.arquiteto}
           />
 
           {imoveis.length === 0 ? (
