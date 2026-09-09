@@ -15,8 +15,9 @@ const HERO_IMAGES = [
   "https://terrenos-joa.vercel.app/api/foto-publica/6715d7fa-ac83-40e3-a41b-b971dd7462f0",
 ];
 
-export function HeroSlideshow({ headline, ctaPrimary, ctaSecondary, images }: {
+export function HeroSlideshow({ headline, subline, ctaPrimary, ctaSecondary, images }: {
   headline: string;
+  subline?: string;
   ctaPrimary: string;
   ctaSecondary: string;
   images?: string[]; // capas dos anúncios publicados (dinâmico); sem elas, cai na curadoria fixa
@@ -46,7 +47,8 @@ export function HeroSlideshow({ headline, ctaPrimary, ctaSecondary, images }: {
 
       <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
         <p className="section-label text-white/60 mb-6">Bossa & Co.</p>
-        <h1 className="font-serif text-5xl md:text-7xl mb-10 leading-tight">{headline}</h1>
+        <h1 className="font-serif text-5xl md:text-7xl mb-6 leading-tight">{headline}</h1>
+        {subline && <p className="text-sm md:text-base text-white/75 max-w-xl mx-auto mb-10">{subline}</p>}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/contato" className="btn-ghost">{ctaPrimary}</Link>
           <Link href="/imoveis" className="btn-ghost">{ctaSecondary}</Link>

@@ -42,6 +42,9 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
       </div>
 
       <div className="pt-4 pb-6">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-brand-latao font-semibold mb-1.5">
+          Selecionado pela curadoria
+        </p>
         <p className="section-label mb-1">
           {imovel.tipo} · {imovel.cidade}
           {imovel.bairro ? `, ${imovel.bairro}` : ""}

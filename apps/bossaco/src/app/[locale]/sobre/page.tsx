@@ -21,8 +21,11 @@ export default function SobrePage() {
             <h1 className="font-serif text-5xl md:text-6xl mb-10 leading-tight">
               Uma boutique imobiliária que representa você — não o proprietário.
             </h1>
-            <p className="text-brand-gray leading-relaxed text-lg">
+            <p className="text-brand-gray leading-relaxed text-lg mb-6">
               Fundada em São Paulo com presença em Miami, a Bossa & Co. nasceu para oferecer um modelo diferente de assessoria imobiliária: independente, orientada ao cliente e focada em curadoria de alto padrão. Não trabalhamos com volume. Trabalhamos com escolha.
+            </p>
+            <p className="text-brand-gray leading-relaxed text-lg">
+              Essa escolha começa antes do cliente: cada imóvel do nosso portfólio passa por critérios rígidos de arquitetura, assinatura de projeto e funcionalidade antes de entrar na curadoria Bossa. Não é qualquer imóvel que entra no site — não aceitamos volume, aceitamos padrão.
             </p>
           </div>
         </section>

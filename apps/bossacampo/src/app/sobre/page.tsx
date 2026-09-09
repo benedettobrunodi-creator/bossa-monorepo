@@ -20,8 +20,11 @@ export default function SobrePage() {
             <h1 className="font-serif text-5xl md:text-6xl mb-10 leading-tight">
               Especialistas em encontrar o lugar certo para a sua vida.
             </h1>
-            <p className="text-brand-gray leading-relaxed text-lg">
+            <p className="text-brand-gray leading-relaxed text-lg mb-6">
               A Bossa Campo nasceu da crença de que a escolha de onde viver é uma das decisões mais importantes da vida. Somos uma boutique imobiliária especializada no interior de São Paulo, com curadoria focada em qualidade de vida, natureza e propriedades com caráter.
+            </p>
+            <p className="text-brand-gray leading-relaxed text-lg">
+              Essa curadoria começa na propriedade: cada uma passa por critérios rígidos de arquitetura, assinatura de projeto e funcionalidade antes de entrar no nosso portfólio. Não é qualquer propriedade que entra no site — não aceitamos volume, aceitamos padrão.
             </p>
           </div>
         </section>

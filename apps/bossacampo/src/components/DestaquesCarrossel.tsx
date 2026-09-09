@@ -33,7 +33,12 @@ export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis
 
   return (
     <section className="py-20 max-w-7xl mx-auto px-6">
-      <p className="section-label mb-3">Destaques</p>
+      <p className="section-label mb-3">Curadoria</p>
+      <h2 className="font-serif text-3xl md:text-4xl mb-2 text-brand-graphite">Destaques</h2>
+      <p className="text-sm text-brand-gray mb-10 max-w-xl">
+        Selecionadas por arquitetura, assinatura de projeto e funcionalidade — nunca por volume.
+        Não é qualquer propriedade que entra na Bossa Campo.
+      </p>
       <div className="flex flex-col gap-10">
         <Linha itens={linha1} />
         <Linha itens={linha2} reverso />

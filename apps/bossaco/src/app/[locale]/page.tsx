@@ -21,6 +21,7 @@ export default async function HomePage({ params: { locale } }: { params: { local
       <HeroSlideshow
         images={capas}
         headline={t("hero.headline")}
+        subline={t("hero.subline")}
         ctaPrimary={t("hero.cta_primary")}
         ctaSecondary={t("hero.cta_secondary")}
       />
