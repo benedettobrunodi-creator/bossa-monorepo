@@ -46,6 +46,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   const [locais, setLocais] = useState<Local[]>([]);
   const [busca, setBusca] = useState("");
   const [local, setLocal] = useState<Local | null>(null);
+  const [outroLocal, setOutroLocal] = useState(false);
   const [tipo, setTipo] = useState(workspace === "BOSSA_CO" ? "APARTAMENTO" : "CASA");
   const [area, setArea] = useState("");
   const [quartos, setQuartos] = useState("");
