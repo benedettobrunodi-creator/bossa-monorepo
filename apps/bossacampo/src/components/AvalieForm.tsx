@@ -74,7 +74,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   async function enviar(e: React.FormEvent) {
     e.preventDefault();
     setErro("");
-    if (!local && busca.length < 2) { setErro(workspace === "BOSSA_CAMPO" ? "Escolha o condomínio." : "Escolha o bairro."); return; }
+    if (!local && busca.length < 2) { setErro(workspace === "BOSSA_CO" ? "Escolha o bairro." : "Escolha o condomínio."); return; }
     if (!area || Number(area) <= 0) { setErro("Informe a área construída."); return; }
     if (nome.trim().length < 2 || whatsapp.replace(/\D/g, "").length < 10) { setErro("Preencha nome e WhatsApp."); return; }
     setEnviando(true);
@@ -91,7 +91,7 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
           quartos: quartos ? Number(quartos) : null,
           nome: nome.trim(), whatsapp: whatsapp.replace(/\D/g, ""),
           arquiteto: arquiteto || null, reformado,
-          origem: workspace === "BOSSA_CO" ? "bossaeco.com.br" : "bossacampo.com.br",
+          origem: workspace === "BOSSA_CO" ? "bossaeco.com.br" : workspace === "BOSSA_PRAIA" ? "bossapraia.com.br" : "bossacampo.com.br",
         }),
       });
       if (!r.ok) throw new Error();
@@ -196,22 +196,50 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
   return (
     <form onSubmit={enviar} className="max-w-xl mx-auto flex flex-col gap-5">
       <div className="relative">
-        <label className="section-label block mb-2">{workspace === "BOSSA_CAMPO" ? "Condomínio" : "Bairro"}</label>
-        <input
-          value={local ? local.rotulo : busca}
-          onChange={(e) => { setBusca(e.target.value); setLocal(null); }}
-          placeholder={workspace === "BOSSA_CAMPO" ? "Ex.: Fazenda Boa Vista" : "Ex.: Vila Nova Conceição"}
-          className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite"
-        />
-        {sugestoes.length > 0 && (
-          <div className="absolute z-10 inset-x-0 top-full bg-white border border-brand-gray-light shadow-lg">
-            {sugestoes.map((s) => (
-              <button key={s.rotulo} type="button" onClick={() => { setLocal(s); setBusca(""); }}
-                className="block w-full text-left px-4 py-3 text-sm hover:bg-brand-gray-light/30">
-                {s.rotulo}
-              </button>
-            ))}
-          </div>
+        <label className="section-label block mb-2">{workspace === "BOSSA_CO" ? "Bairro" : "Condomínio"}</label>
+        {workspace === "BOSSA_CO" ? (
+          <>
+            <input
+              value={local ? local.rotulo : busca}
+              onChange={(e) => { setBusca(e.target.value); setLocal(null); }}
+              placeholder="Ex.: Vila Nova Conceição"
+              className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none focus:border-brand-graphite"
+            />
+            {sugestoes.length > 0 && (
+              <div className="absolute z-10 inset-x-0 top-full bg-white border border-brand-gray-light shadow-lg">
+                {sugestoes.map((s) => (
+                  <button key={s.rotulo} type="button" onClick={() => { setLocal(s); setBusca(""); }}
+                    className="block w-full text-left px-4 py-3 text-sm hover:bg-brand-gray-light/30">
+                    {s.rotulo}
+                  </button>
+                ))}
+              </div>
+            )}
+          </>
+        ) : (
+          <>
+            <select
+              value={outroLocal ? "OUTRO" : local?.rotulo ?? ""}
+              onChange={(e) => {
+                const v = e.target.value;
+                if (v === "OUTRO") { setLocal(null); setBusca(""); setOutroLocal(true); }
+                else if (v === "") { setLocal(null); setBusca(""); setOutroLocal(false); }
+                else { setLocal(locais.find((l) => l.rotulo === v) ?? null); setBusca(""); setOutroLocal(false); }
+              }}
+              className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm focus:outline-none"
+            >
+              <option value="">Selecione o condomínio</option>
+              {locais.map((l) => (
+                <option key={l.rotulo} value={l.rotulo}>{l.rotulo}</option>
+              ))}
+              <option value="OUTRO">Outro…</option>
+            </select>
+            {outroLocal && (
+              <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Nome do condomínio"
+                autoFocus
+                className="w-full border-b border-brand-gray-light bg-transparent py-3 text-sm mt-1 focus:outline-none focus:border-brand-graphite" />
+            )}
+          </>
         )}
       </div>
       <div className="grid grid-cols-3 gap-4">
@@ -224,6 +252,13 @@ export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO"
                 <option value="APARTAMENTO">Apartamento</option>
                 <option value="COBERTURA">Cobertura</option>
                 <option value="CASA">Casa</option>
+              </>
+            ) : workspace === "BOSSA_PRAIA" ? (
+              <>
+                <option value="CASA">Casa</option>
+                <option value="APARTAMENTO">Apartamento</option>
+                <option value="COBERTURA">Cobertura</option>
+                <option value="LOTE">Terreno</option>
               </>
             ) : (
               <>
