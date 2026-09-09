@@ -42,7 +42,7 @@ const ARQUITETOS = [
 const brl = (v: number | null) =>
   v != null ? v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }) : "—";
 
-export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO" | "BOSSA_CAMPO"; whatsappMarca: string }) {
+export function AvalieForm({ workspace, whatsappMarca }: { workspace: "BOSSA_CO" | "BOSSA_CAMPO" | "BOSSA_PRAIA"; whatsappMarca: string }) {
   const [locais, setLocais] = useState<Local[]>([]);
   const [busca, setBusca] = useState("");
   const [local, setLocal] = useState<Local | null>(null);
