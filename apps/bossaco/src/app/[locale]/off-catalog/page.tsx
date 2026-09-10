@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { PropertyCard } from "@/components/PropertyCard";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { OffCatalogForm } from "@/components/OffCatalogForm";
 
 export const revalidate = 30;
 
@@ -27,7 +28,15 @@ export default async function OffCatalogPage() {
           </div>
 
           {imoveis.length === 0 ? (
-            <p className="font-serif text-2xl text-brand-gray">Sem imóveis disponíveis no momento.</p>
+            <div>
+              <p className="font-serif text-2xl text-brand-graphite mb-3">Acervo reservado a membros.</p>
+              <p className="text-sm text-brand-gray leading-relaxed max-w-2xl mb-10">
+                As propriedades off-catalog não aparecem na vitrine pública: são casas que os proprietários
+                preferem apresentar apenas a compradores selecionados. Deixe seu cadastro — nossa curadoria
+                entra em contato e apresenta o que faz sentido para o seu perfil.
+              </p>
+              <OffCatalogForm workspace="BOSSA_CO" />
+            </div>
           ) : (
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
               {imoveis.map((imovel) => (
@@ -39,6 +48,13 @@ export default async function OffCatalogPage() {
                 />
               ))}
             </div>
+          )}
+
+          {imoveis.length > 0 && (
+          <div className="mt-16 pt-16 border-t border-brand-gray-light">
+            <p className="section-label mb-4">Quer acesso ao acervo completo?</p>
+            <OffCatalogForm workspace="BOSSA_CO" />
+          </div>
           )}
         </div>
       </main>
