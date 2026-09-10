@@ -41,7 +41,7 @@ export default async function HomePage() {
         <div className="max-w-2xl">
           <p className="section-label mb-3">Sobre nós</p>
           <p className="font-serif text-3xl text-brand-graphite leading-snug mb-8">
-            Somos uma boutique imobiliária especializada no interior de São Paulo — Campinas, Itu, Indaiatuba e região — com foco em qualidade de vida e escolha consciente.
+            Somos uma boutique imobiliária especializada nos grandes condomínios de campo do interior de São Paulo — Fazenda Boa Vista, Quinta da Baroneza, Terras de São José, Fazenda da Grama e região — com foco em qualidade de vida e escolha consciente.
           </p>
           <Link href="/sobre" className="btn-green">Conhecer a Bossa Campo</Link>
         </div>

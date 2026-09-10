@@ -48,7 +48,7 @@ export function Footer() {
             >
               WhatsApp
             </a>
-            <p className="mt-2">Jardins, São Paulo — SP</p>
+            <p className="mt-2">Jardins · Itaim Bibi · Vila Nova Conceição · Cidade Jardim · Alto de Pinheiros</p>
             <p>Miami, FL — USA</p>
           </div>
         </div>

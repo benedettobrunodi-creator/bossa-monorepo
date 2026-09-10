@@ -37,7 +37,7 @@ export default function ContatoPage() {
               </div>
               <div>
                 <p className="section-label mb-1">Região de atuação</p>
-                <p className="text-brand-gray">Campinas · Itu · Indaiatuba · Salto e região</p>
+                <p className="text-brand-gray">Fazenda Boa Vista · Quinta da Baroneza · Terras de São José · Fazenda da Grama e região</p>
               </div>
               <div>
                 <p className="section-label mb-1">Instagram</p>

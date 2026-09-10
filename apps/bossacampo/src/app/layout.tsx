@@ -18,7 +18,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bossacampo.com.br"),
   title: { default: "Bossa Campo — Imóveis no Interior de SP", template: "%s | Bossa Campo" },
-  description: "Curadoria de imóveis residenciais no interior de São Paulo — Campinas, Itu, Indaiatuba e região. Para quem escolhe onde viver.",
+  description: "Curadoria de propriedades em condomínios de campo — Fazenda Boa Vista, Quinta da Baroneza, Terras de São José, Fazenda da Grama e região. Para quem escolhe onde viver.",
   openGraph: {
     siteName: "Bossa Campo",
     locale: "pt_BR",

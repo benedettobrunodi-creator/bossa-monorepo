@@ -18,7 +18,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bossapraia.com.br"),
   title: { default: "Bossa Praia — Imóveis no Litoral de SP", template: "%s | Bossa Praia" },
-  description: "Curadoria de imóveis residenciais no interior de São Paulo — Campinas, Itu, Indaiatuba e região. Para quem escolhe onde viver.",
+  description: "Curadoria de propriedades no litoral de São Paulo — Maresias, Baleia, Juquehy, Ilhabela, Riviera de São Lourenço e região. Para quem escolhe onde viver.",
   openGraph: {
     siteName: "Bossa Praia",
     locale: "pt_BR",

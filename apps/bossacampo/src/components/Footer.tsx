@@ -37,7 +37,7 @@ export function Footer() {
             <a href="https://wa.me/5511921226156" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               WhatsApp
             </a>
-            <p className="mt-2">Campinas · Itu · Indaiatuba e região</p>
+            <p className="mt-2">Fazenda Boa Vista · Quinta da Baroneza · Terras de São José · Fazenda da Grama e região</p>
           </div>
         </div>
 

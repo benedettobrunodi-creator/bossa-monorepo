@@ -37,7 +37,7 @@ export default function ContatoPage() {
               </div>
               <div>
                 <p className="section-label mb-1">Região de atuação</p>
-                <p className="text-brand-gray">Campinas · Itu · Indaiatuba · Salto e região</p>
+                <p className="text-brand-gray">Maresias · Baleia · Juquehy · Ilhabela · Riviera de São Lourenço</p>
               </div>
               <div>
                 <p className="section-label mb-1">Instagram</p>

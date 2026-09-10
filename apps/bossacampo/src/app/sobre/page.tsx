@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Sobre",
-  description: "Boutique imobiliária especializada no interior de São Paulo. Campinas, Itu, Indaiatuba e região.",
+  description: "Boutique imobiliária especializada em condomínios de campo no interior de São Paulo — Fazenda Boa Vista, Quinta da Baroneza, Terras de São José e região.",
 };
 
 export default function SobrePage() {
@@ -36,7 +36,7 @@ export default function SobrePage() {
               <div>
                 <h2 className="font-serif text-3xl mb-6">Interior de São Paulo</h2>
                 <p className="text-brand-gray leading-relaxed mb-6">
-                  Operamos nas regiões com maior qualidade de vida no estado: Campinas, Itu, Indaiatuba, Salto, Porto Feliz e cidades históricas da região. Chácaras, sítios, condomínios de campo e residências urbanas de alto padrão.
+                  Operamos nos condomínios de campo mais desejados do estado: Fazenda Boa Vista (Porto Feliz), Quinta da Baroneza (Bragança Paulista), Terras de São José (Itu), Fazenda da Grama (Itupeva), Helvetia (Indaiatuba) e região. Casas assinadas, chácaras e propriedades de alto padrão.
                 </p>
                 <ul className="flex flex-wrap gap-2">
                   {["Campinas", "Itu", "Indaiatuba", "Salto", "Porto Feliz", "Itatiba", "Valinhos"].map((c) => (
