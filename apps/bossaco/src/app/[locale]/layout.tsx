@@ -18,7 +18,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bossaco.com.br"),
+  metadataBase: new URL("https://bossaeco.com"),
   title: { default: "Bossa & Co. — Imóveis de Alto Padrão", template: "%s | Bossa & Co." },
   description: "Curadoria de imóveis residenciais e comerciais em São Paulo e Miami. Tenant representation, consultoria de compra e acesso exclusivo a imóveis off-catalog.",
   openGraph: {
