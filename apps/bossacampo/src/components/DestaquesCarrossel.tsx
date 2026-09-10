@@ -1,16 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { PropertyCard } from "./PropertyCard";
 import type { Imovel } from "@bossa/notion-client";
 
-// Dois carrosséis empilhados em rolagem contínua (pedido Bruno 08/09):
-// linha de cima anda pra esquerda, a de baixo pra direita. Pausa no hover.
-// Com poucos imóveis, a lista é repetida pra fila nunca ficar vazia.
+// Dois carrosséis empilhados que andam sozinhos E aceitam arraste (dedo/trackpad):
+// auto-scroll programático num container de scroll nativo — toca/arrasta, ele pausa
+// e retoma 4s depois de soltar (pedido Bruno 09/09). Loop infinito por duplicação.
 export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis: Imovel[]; hrefBase?: string }) {
-  // celular/tablet: carrossel vira scroll nativo — arrasta com o dedo pros dois
-  // lados (pedido Bruno 09/09); desktop mantém a rolagem continua automática
-  const [toque, setToque] = useState(false);
-  useEffect(() => { setToque(window.matchMedia("(pointer: coarse)").matches); }, []);
   if (!imoveis.length) return null;
 
   const encher = (lista: Imovel[]) => {
@@ -21,35 +17,6 @@ export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis
   const linha1 = encher(imoveis.filter((_, i) => i % 2 === 0));
   const linha2 = encher(imoveis.filter((_, i) => i % 2 === 1).length ? imoveis.filter((_, i) => i % 2 === 1) : imoveis);
 
-  const Linha = ({ itens, reverso }: { itens: Imovel[]; reverso?: boolean }) => {
-    if (toque) {
-      const unicos = itens.filter((x, i, arr) => arr.findIndex((y) => y.id === x.id) === i);
-      return (
-        <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory -mx-6 px-6 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {unicos.map((imovel, i) => (
-            <div key={`${imovel.id}-${i}`} className="w-[85vw] max-w-[370px] shrink-0 snap-start">
-              <PropertyCard imovel={imovel} href={`${hrefBase}/${imovel.slug}`} />
-            </div>
-          ))}
-        </div>
-      );
-    }
-    return (
-    <div className="overflow-hidden group">
-      <div
-        className={`flex gap-5 w-max ${reverso ? "anim-carrossel-rev" : "anim-carrossel"} group-hover:[animation-play-state:paused]`}
-        style={{ animationDuration: `${Math.max(70, itens.length * 16)}s` }}
-      >
-        {[...itens, ...itens].map((imovel, i) => (
-          <div key={`${imovel.id}-${i}`} className="w-[370px] max-w-[85vw] shrink-0">
-            <PropertyCard imovel={imovel} href={`${hrefBase}/${imovel.slug}`} />
-          </div>
-        ))}
-      </div>
-    </div>
-    );
-  };
-
   return (
     <section className="py-20 max-w-7xl mx-auto px-6">
       <p className="section-label mb-3">Curadoria</p>
@@ -59,20 +26,70 @@ export function DestaquesCarrossel({ imoveis, hrefBase = "/imoveis" }: { imoveis
         Não é qualquer propriedade que entra na Bossa Campo.
       </p>
       <div className="flex flex-col gap-10">
-        <Linha itens={linha1} />
-        <Linha itens={linha2} reverso />
+        <Linha itens={linha1} hrefBase={hrefBase} />
+        <Linha itens={linha2} hrefBase={hrefBase} reverso />
       </div>
-      <style>{`
-        @keyframes carrossel {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-        .anim-carrossel { animation: carrossel linear infinite; }
-        .anim-carrossel-rev { animation: carrossel linear infinite reverse; }
-        @media (prefers-reduced-motion: reduce) {
-          .anim-carrossel, .anim-carrossel-rev { animation-play-state: paused; }
-        }
-      `}</style>
     </section>
+  );
+}
+
+function Linha({ itens, hrefBase, reverso }: { itens: Imovel[]; hrefBase: string; reverso?: boolean }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const pausaAte = useRef(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = 0;
+    let acumulado = 0;
+    // linha reversa começa no meio pra ter estrada nos dois sentidos
+    requestAnimationFrame(() => { el.scrollLeft = reverso ? el.scrollWidth / 2 : 1; });
+    const passo = () => {
+      if (Date.now() > pausaAte.current) {
+        acumulado += reverso ? -0.55 : 0.55;
+        const inteiro = Math.trunc(acumulado);
+        if (inteiro !== 0) {
+          el.scrollLeft += inteiro;
+          acumulado -= inteiro;
+        }
+        const meio = el.scrollWidth / 2;
+        if (meio > 0) {
+          if (el.scrollLeft >= meio) el.scrollLeft -= meio;
+          else if (el.scrollLeft <= 0) el.scrollLeft += meio;
+        }
+      }
+      raf = requestAnimationFrame(passo);
+    };
+    raf = requestAnimationFrame(passo);
+    const tocou = () => { pausaAte.current = Date.now() + 4000; };
+    const entrouMouse = () => { pausaAte.current = Number.MAX_SAFE_INTEGER; };
+    const saiuMouse = () => { pausaAte.current = Date.now() + 800; };
+    el.addEventListener("touchstart", tocou, { passive: true });
+    el.addEventListener("touchmove", tocou, { passive: true });
+    el.addEventListener("wheel", tocou, { passive: true });
+    el.addEventListener("mouseenter", entrouMouse);
+    el.addEventListener("mouseleave", saiuMouse);
+    return () => {
+      cancelAnimationFrame(raf);
+      el.removeEventListener("touchstart", tocou);
+      el.removeEventListener("touchmove", tocou);
+      el.removeEventListener("wheel", tocou);
+      el.removeEventListener("mouseenter", entrouMouse);
+      el.removeEventListener("mouseleave", saiuMouse);
+    };
+  }, [reverso]);
+
+  return (
+    <div
+      ref={ref}
+      className="flex gap-5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {[...itens, ...itens].map((imovel, i) => (
+        <div key={`${imovel.id}-${i}`} className="w-[370px] max-w-[85vw] shrink-0">
+          <PropertyCard imovel={imovel} href={`${hrefBase}/${imovel.slug}`} />
+        </div>
+      ))}
+    </div>
   );
 }
