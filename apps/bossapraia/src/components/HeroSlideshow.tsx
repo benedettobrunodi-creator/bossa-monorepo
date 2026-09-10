@@ -32,11 +32,12 @@ export function HeroSlideshow({ images }: { images?: string[] } = {}) {
       ))}
       <div className="relative z-10 text-center text-white px-6 max-w-4xl mx-auto">
         <p className="text-xs tracking-[0.2em] uppercase mb-6" style={{ color: "#C9B99A" }}>Bossa Praia</p>
+        {/* hero próprio da Praia — opção A do Oscar, escolhida pelo Bruno 09/09 */}
         <h1 className="font-serif text-5xl md:text-7xl mb-6 leading-tight">
-          Para quem escolhe onde viver, não apenas onde morar.
+          Casas que sabem para onde olhar.
         </h1>
         <p className="text-sm md:text-base text-white/75 max-w-xl mx-auto mb-10">
-          Cada propriedade passa por critério de arquitetura, assinatura de projeto e funcionalidade antes de entrar na curadoria — nunca por volume.
+          Maresias, Juquehy, Ilhabela. Cada casa entra por arquitetura, assinatura de projeto e implantação — nunca por volume.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/contato" className="btn-ghost">Fale com um consultor</Link>
