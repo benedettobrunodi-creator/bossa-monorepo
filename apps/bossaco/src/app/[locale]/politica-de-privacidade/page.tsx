@@ -13,7 +13,7 @@ export default function PoliticaPrivacidade() {
       <p>Os dados ficam em sistemas com acesso restrito à nossa equipe e são mantidos apenas pelo tempo necessário à finalidade do contato.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Seus direitos</h2>
       <p>Você pode solicitar a qualquer momento a confirmação, correção ou exclusão dos seus dados, a revogação do consentimento e os demais direitos do art. 18 da LGPD, pelo e-mail bruno@ber-engenharia.com.br.</p>
-      <p style={{ marginTop: 28, fontSize: 14, opacity: 0.7 }}>Bossa & Co. · CRECI-SP 319862 · Última atualização: setembro de 2026.</p>
+      <p style={{ marginTop: 28, fontSize: 14, opacity: 0.7 }}>Bossa & Co. · Bruno Di Benedetto · Corretor responsável · CRECI-SP 319862 · Última atualização: setembro de 2026.</p>
     </main>
   );
 }
