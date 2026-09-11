@@ -8,11 +8,11 @@ export default function PoliticaPrivacidade() {
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Dados que coletamos</h2>
       <p>Coletamos apenas os dados que você nos fornece voluntariamente pelos nossos canais de contato (formulário e WhatsApp): nome, e-mail, telefone e a descrição do imóvel que procura ou oferece.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Como usamos</h2>
-      <p>Exclusivamente para responder ao seu contato e conduzir a assessoria imobiliária solicitada. Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing.</p>
+      <p>Exclusivamente para responder ao seu contato e conduzir o atendimento e a consultoria solicitada. Não vendemos nem compartilhamos seus dados com terceiros para fins de marketing.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Armazenamento e segurança</h2>
       <p>Os dados ficam em sistemas com acesso restrito à nossa equipe e são mantidos apenas pelo tempo necessário à finalidade do contato.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Seus direitos</h2>
-      <p>Você pode solicitar a qualquer momento a confirmação, correção ou exclusão dos seus dados, pelo e-mail bruno@ber-engenharia.com.br.</p>
+      <p>Você pode solicitar a qualquer momento a confirmação, correção ou exclusão dos seus dados, a revogação do consentimento e os demais direitos do art. 18 da LGPD, pelo e-mail bruno@ber-engenharia.com.br.</p>
       <p style={{ marginTop: 28, fontSize: 14, opacity: 0.7 }}>Bossa Praia · CRECI-SP 319862 · Última atualização: setembro de 2026.</p>
     </main>
   );
