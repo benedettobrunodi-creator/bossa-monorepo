@@ -5,6 +5,7 @@ export default function PoliticaPrivacidade() {
     <main style={{ maxWidth: 720, margin: "0 auto", padding: "96px 24px 64px", lineHeight: 1.7 }}>
       <h1 style={{ fontSize: 28, marginBottom: 24 }}>Política de Privacidade</h1>
       <p>A Bossa Praia respeita a sua privacidade e trata dados pessoais em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 — LGPD).</p>
+      <p><strong>Controlador:</strong> Bossa &amp; Co Ltda — CNPJ 66.793.146/0001-40.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Dados que coletamos</h2>
       <p>Coletamos apenas os dados que você nos fornece voluntariamente pelos nossos canais de contato (formulário e WhatsApp): nome, e-mail, telefone e a descrição do imóvel que procura ou oferece.</p>
       <h2 style={{ fontSize: 18, marginTop: 28 }}>Como usamos</h2>
