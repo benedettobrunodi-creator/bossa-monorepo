@@ -20,6 +20,7 @@ export interface Imovel {
   quartos?: number;
   vagas?: number;
   preco?: number;
+  creci?: string; // Fase 2: nº CRECI exibido quando venda autorizada
   descricao?: string;
   fotos: string[];
   arquiteto?: string;

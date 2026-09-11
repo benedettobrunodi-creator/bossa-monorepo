@@ -72,6 +72,9 @@ export function Footer() {
             <Link href="/politica-de-privacidade" className="hover:text-white transition-colors">
               Política de Privacidade
             </Link>
+            <Link href="/termos-de-uso" className="hover:text-white transition-colors">
+              Termos de Uso
+            </Link>
           </p>
           <a href="https://instagram.com/bossacampo" target="_blank" rel="noopener noreferrer"
             className="text-xs tracking-widest uppercase hover:text-white transition-colors" style={{ color: "#8FAF99" }}>

@@ -28,7 +28,7 @@ export default async function OffCatalogPage() {
               <p className="font-serif text-2xl text-brand-graphite mb-3">Acervo reservado a membros.</p>
               <p className="text-sm text-brand-gray leading-relaxed max-w-2xl mb-10">
                 As propriedades off-catalog não aparecem na vitrine pública: são casas que os proprietários
-                preferem apresentar apenas a compradores selecionados. Deixe seu cadastro — nossa curadoria
+                preferem apresentar apenas a interessados selecionados. Deixe seu cadastro — nossa curadoria
                 entra em contato e apresenta o que faz sentido para o seu perfil.
               </p>
               <OffCatalogForm workspace="BOSSA_PRAIA" />

@@ -10,13 +10,13 @@ interface PropertyCardProps {
 
 export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
   const preco =
-    !imovel.preco || imovel.preco === 0
-      ? "Sob consulta"
-      : new Intl.NumberFormat("pt-BR", {
+    imovel.preco && imovel.preco > 0
+      ? new Intl.NumberFormat("pt-BR", {
           style: "currency",
           currency: "BRL",
           maximumFractionDigits: 0,
-        }).format(imovel.preco);
+        }).format(imovel.preco)
+      : null; // Harvey 11/09: sem preço = apreciação, sem "Sob consulta"
 
   const localizacao = imovel.regiao || imovel.cidade || imovel.bairro || "";
 
@@ -87,7 +87,7 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
             ))}
           </div>
         )}
-        <p className="font-serif text-lg text-brand-graphite">{preco}</p>
+        {preco && <p className="font-serif text-lg text-brand-graphite">{preco}</p>}
       </div>
     </Link>
   );

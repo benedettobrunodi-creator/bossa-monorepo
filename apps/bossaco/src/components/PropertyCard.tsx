@@ -14,9 +14,9 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
   const t = useTranslations("imoveis.card");
 
   const preco =
-    !imovel.preco || imovel.preco === 0
-      ? t("sobConsulta")
-      : new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(imovel.preco);
+    imovel.preco && imovel.preco > 0
+      ? new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 }).format(imovel.preco)
+      : null; // Harvey 11/09: sem preço = apreciação, sem "Sob consulta"
 
   return (
     <Link href={href} className="property-card">
@@ -71,7 +71,7 @@ export function PropertyCard({ imovel, href, showBadge }: PropertyCardProps) {
           {imovel.quartos && <span>{imovel.quartos} {t("quartos")}</span>}
           {imovel.vagas && <span>{imovel.vagas} {t("vagas")}</span>}
         </div>
-        <p className="font-serif text-lg text-brand-graphite">{preco}</p>
+        {preco && <p className="font-serif text-lg text-brand-graphite">{preco}</p>}
       </div>
     </Link>
   );
