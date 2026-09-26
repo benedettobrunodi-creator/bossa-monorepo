@@ -18,13 +18,13 @@ export default function SobrePage() {
           <div className="max-w-3xl">
             <p className="section-label mb-4">Sobre a Bossa Praia</p>
             <h1 className="font-serif text-5xl md:text-6xl mb-10 leading-tight">
-              Especialistas em encontrar o lugar certo para a sua vida.
+              Somos a Bossa: curadoria de imóveis assinados.
             </h1>
             <p className="text-brand-gray leading-relaxed text-lg mb-6">
               A Bossa Praia nasceu da crença de que a escolha de onde viver é uma das decisões mais importantes da vida. Somos uma boutique imobiliária especializada no litoral de São Paulo, com curadoria focada em qualidade de vida, mar e propriedades com caráter.
             </p>
             <p className="text-brand-gray leading-relaxed text-lg">
-              Essa curadoria começa na propriedade: cada uma passa por critérios rígidos de arquitetura, assinatura de projeto e funcionalidade antes de entrar no nosso portfólio. Não é qualquer propriedade que entra no site — não aceitamos volume, aceitamos padrão.
+              Selecionamos imóveis icônicos e entregamos inteligência de mercado — pra que cada casa encontre quem sabe reconhecer o seu valor de verdade.
             </p>
           </div>
         </section>
